@@ -7,7 +7,7 @@ export function useCoinsList({
   perPage = 10,
 }: { page?: number; perPage?: number } = {}) {
   const { data, ...queryResult } = useQuery({
-    queryKey: ["coins", { page, perPage }],
+    queryKey: ["coinsList", { page, perPage }],
     queryFn: () => coinsListWithMarketData({ page, perPage }),
   });
 

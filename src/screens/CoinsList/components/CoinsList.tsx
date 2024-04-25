@@ -3,13 +3,13 @@ import React from "react";
 import { type StyleProp, View, type ViewStyle } from "react-native";
 import { Text } from "react-native-paper";
 
-import type { Coin } from "@/types/coin";
+import type { CoinMarket } from "@/types/coins";
 
 import CoinItem from "./CoinItem";
 import { styles } from "./CoinsList.styles";
 
 type CoinsListProps = {
-  coins?: Coin[];
+  coins?: CoinMarket[];
   style?: StyleProp<ViewStyle>;
 };
 

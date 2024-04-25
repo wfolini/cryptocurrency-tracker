@@ -5,7 +5,7 @@ import { Text } from "react-native-paper";
 import { styles } from "./PriceChangeLabel.styles";
 
 type PriceChangeLabelProps = {
-  priceChange: number;
+  priceChange?: number;
   timeFrame: string;
 };
 
@@ -13,10 +13,10 @@ export function PriceChangeLabel({
   priceChange,
   timeFrame,
 }: PriceChangeLabelProps) {
-  const isBullish = priceChange > 0;
-  const isBearish = priceChange < 0;
+  const isBullish = !!priceChange && priceChange > 0;
+  const isBearish = !!priceChange && priceChange < 0;
 
-  return (
+  return priceChange ? (
     <View style={styles.container}>
       <Text variant="labelSmall">{`${timeFrame}`}</Text>
       <Text variant="labelSmall">
@@ -26,8 +26,8 @@ export function PriceChangeLabel({
             name={isBullish ? "caret-up" : "caret-down"}
           />
         ) : null}
-        <Text>{` ${priceChange.toFixed(2)}%`}</Text>
+        <Text>{` ${priceChange?.toFixed(2)}%`}</Text>
       </Text>
     </View>
-  );
+  ) : null;
 }
