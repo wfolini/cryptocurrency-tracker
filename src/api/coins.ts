@@ -1,5 +1,5 @@
 import { api } from "@/core/api";
-import type { CoinDetail, CoinMarket } from "@/types/coins";
+import type { CoinDetail, CoinMarket, CoinMarketChart } from "@/types/coins";
 
 // Function only for testing purposes
 export function sleep(ms = 2000): Promise<void> {
@@ -11,7 +11,7 @@ export function coinsListWithMarketData({ page = 1, perPage = 10 }) {
     params: {
       vs_currency: "usd",
       price_change_percentage: "7d",
-      precision: "2",
+      precision: "full",
       page,
       per_page: perPage,
     },
@@ -27,6 +27,20 @@ export function coinDataByID(id: string) {
       community_data: false,
       developer_data: false,
       sparkline: false,
+    },
+  });
+}
+
+export function coinHistoricalChartDataByID(
+  id: string,
+  currency = "usd",
+  days = 30
+) {
+  return api.get<CoinMarketChart>(`/coins/${id}/market_chart`, {
+    params: {
+      vs_currency: currency,
+      days,
+      precision: "full",
     },
   });
 }

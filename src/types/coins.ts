@@ -50,8 +50,12 @@ export interface Links {
   repos_url?: ReposURL;
 }
 
+export interface CoinCurrentPrice {
+  [key: string]: number;
+}
+
 export interface MarketData {
-  current_price?: { [key: string]: number };
+  current_price?: CoinCurrentPrice;
   total_value_locked?: null;
   mcap_to_tvl_ratio?: null;
   fdv_to_tvl_ratio?: null;
@@ -128,4 +132,9 @@ export interface CoinDetail {
   market_data?: MarketData;
   status_updates?: unknown[];
   last_updated?: Date;
+}
+export interface CoinMarketChart {
+  prices: number[][];
+  market_caps: number[][];
+  total_volumes: number[][];
 }

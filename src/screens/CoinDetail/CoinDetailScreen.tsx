@@ -5,9 +5,8 @@ import { Text } from "react-native-paper";
 import CoinImage from "@/core/components/CoinImage";
 import { useCoinDetail } from "@/hooks/coins/useCoinDetail";
 import type { RootStackScreenProps } from "@/types/navigation";
-import { formatCurrency } from "@/utils/coins";
-
 import { styles } from "./CoinDetailScreen.styles";
+import CoinGraph from "./components/CoinGraph";
 import {
   type CoinStatisticData,
   useCoinStatisticData,
@@ -42,14 +41,12 @@ export default function CoinDetailScreen({
       <View style={styles.headerSection}>
         <CoinImage source={coinData?.image?.large} />
         <Text variant="headlineSmall">{coinData?.symbol?.toUpperCase()}</Text>
-        <Text variant="headlineSmall" style={styles.currentPrice}>
-          {formatCurrency(
-            coinData?.market_data?.current_price?.[currency],
-            currency
-          )}
-        </Text>
       </View>
-      <View style={styles.graphSection} />
+      <CoinGraph
+        coinId={coinId}
+        currentPrice={coinData?.market_data?.current_price}
+        currency={currency}
+      />
       <View style={styles.statisticSection}>
         <Text variant="titleMedium">Statistic</Text>
         <FlashList

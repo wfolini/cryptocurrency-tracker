@@ -13,13 +13,6 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 20,
   },
-  currentPrice: {
-    marginLeft: "auto",
-  },
-  graphSection: {
-    height: 200,
-    backgroundColor: colors.lightGray,
-  },
   statisticSection: {
     flex: 1,
     marginHorizontal: 20,

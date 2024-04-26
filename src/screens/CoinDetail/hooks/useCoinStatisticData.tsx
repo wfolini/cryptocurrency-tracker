@@ -37,11 +37,11 @@ function buildCoinStatisticData(
         },
         {
           label: "All Time High Price",
-          value: formatCurrency(coinMarketData?.ath?.[currency], currency),
+          value: formatCurrency(coinMarketData?.ath?.[currency], currency, 8),
         },
         {
           label: "All Time Low Price",
-          value: formatCurrency(coinMarketData?.atl?.[currency], currency),
+          value: formatCurrency(coinMarketData?.atl?.[currency], currency, 8),
         },
       ]
     : [];
