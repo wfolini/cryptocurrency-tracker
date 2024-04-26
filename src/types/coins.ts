@@ -1,3 +1,5 @@
+import type { CURRENCIES } from "@/constants/coins";
+
 export interface BasicCoin {
   id: string;
   name: string;
@@ -50,9 +52,11 @@ export interface Links {
   repos_url?: ReposURL;
 }
 
-export interface CoinCurrentPrice {
-  [key: string]: number;
-}
+export type Currency = (typeof CURRENCIES)[number];
+
+export type CoinCurrentPrice = {
+  [key in Currency]: number;
+};
 
 export interface MarketData {
   current_price?: CoinCurrentPrice;

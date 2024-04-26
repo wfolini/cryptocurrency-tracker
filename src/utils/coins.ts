@@ -1,6 +1,9 @@
+import { DEFAULT_CURRENCY } from "@/constants/coins";
+import type { Currency } from "@/types/coins";
+
 export function formatCurrency(
   value: number | undefined,
-  currency: string,
+  currency: Currency = DEFAULT_CURRENCY,
   minimumFractionDigits = 4
 ) {
   return value

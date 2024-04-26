@@ -1,3 +1,4 @@
+import { DEFAULT_CURRENCY } from "@/constants/coins";
 import { api } from "@/core/api";
 import type { CoinDetail, CoinMarket, CoinMarketChart } from "@/types/coins";
 
@@ -9,7 +10,7 @@ export function sleep(ms = 2000): Promise<void> {
 export function coinsListWithMarketData({ page = 1, perPage = 10 }) {
   return api.get<CoinMarket[]>("/coins/markets", {
     params: {
-      vs_currency: "usd",
+      vs_currency: DEFAULT_CURRENCY,
       price_change_percentage: "7d",
       precision: "full",
       page,
@@ -33,7 +34,7 @@ export function coinDataByID(id: string) {
 
 export function coinHistoricalChartDataByID(
   id: string,
-  currency = "usd",
+  currency = DEFAULT_CURRENCY,
   days = 30
 ) {
   return api.get<CoinMarketChart>(`/coins/${id}/market_chart`, {

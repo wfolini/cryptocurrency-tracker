@@ -36,7 +36,7 @@ export default function CoinItem({ coin }: CoinItemProps) {
         </View>
         <View style={styles.rightContent}>
           <Text variant="titleMedium" style={styles.rightContentText}>
-            {formatCurrency(coin.current_price, "usd")}
+            {formatCurrency(coin.current_price)}
           </Text>
           <PriceChangeLabel
             priceChange={coin.market_cap_change_percentage_24h}

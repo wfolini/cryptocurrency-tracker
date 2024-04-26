@@ -1,12 +1,17 @@
 import { FlashList, type ListRenderItemInfo } from "@shopify/flash-list";
+import { useState } from "react";
 import { ScrollView, View } from "react-native";
 import { Text } from "react-native-paper";
 
+import { DEFAULT_CURRENCY } from "@/constants/coins";
 import CoinImage from "@/core/components/CoinImage";
 import { useCoinDetail } from "@/hooks/coins/useCoinDetail";
+import type { Currency } from "@/types/coins";
 import type { RootStackScreenProps } from "@/types/navigation";
+
 import { styles } from "./CoinDetailScreen.styles";
 import CoinGraph from "./components/CoinGraph";
+import { CurrencySelector } from "./components/CurrencySelector";
 import {
   type CoinStatisticData,
   useCoinStatisticData,
@@ -27,7 +32,8 @@ export default function CoinDetailScreen({
   route,
 }: RootStackScreenProps<"CoinDetail">) {
   const { coinId } = route.params;
-  const currency = "usd";
+
+  const [currency, setCurrency] = useState<Currency>(DEFAULT_CURRENCY);
 
   const { isFetching, coinData } = useCoinDetail(coinId);
   const coinStatisticData = useCoinStatisticData(
@@ -35,12 +41,21 @@ export default function CoinDetailScreen({
     currency
   );
 
+  const handleCurrencyChange = (currency: Currency) => {
+    setCurrency(currency);
+  };
+
   //  TODO: Improve loading state UI
   return isFetching ? null : (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerSection}>
         <CoinImage source={coinData?.image?.large} />
         <Text variant="headlineSmall">{coinData?.symbol?.toUpperCase()}</Text>
+        <CurrencySelector
+          selectedCurrency={currency}
+          onCurrencyChange={handleCurrencyChange}
+          style={{ marginLeft: "auto" }}
+        />
       </View>
       <CoinGraph
         coinId={coinId}

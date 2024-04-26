@@ -1,6 +1,7 @@
-import type { MarketData } from "@/types/coins";
-import { formatCurrency } from "@/utils/coins";
 import { useMemo } from "react";
+
+import type { Currency, MarketData } from "@/types/coins";
+import { formatCurrency } from "@/utils/coins";
 
 export type CoinStatisticData = {
   label: string;
@@ -9,7 +10,7 @@ export type CoinStatisticData = {
 
 function buildCoinStatisticData(
   coinMarketData: MarketData | undefined,
-  currency: string
+  currency: Currency
 ): CoinStatisticData[] {
   return coinMarketData
     ? [
@@ -49,7 +50,7 @@ function buildCoinStatisticData(
 
 export function useCoinStatisticData(
   coinMarketData: MarketData | undefined,
-  currency: string
+  currency: Currency
 ) {
   const coinStatisticData = useMemo(
     () => buildCoinStatisticData(coinMarketData, currency),
