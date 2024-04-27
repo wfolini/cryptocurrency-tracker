@@ -1,19 +1,19 @@
 import { useMemo } from "react";
 import { View } from "react-native";
 import { LineGraph } from "react-native-graph";
-import { Text } from "react-native-paper";
 import { ActivityIndicator } from "react-native-paper";
 
+import { Text } from "@/core/components";
 import colors from "@/constants/colors";
 import { useCoinPriceHistory } from "@/hooks/coins/useCoinPriceHistory";
-import type { CoinCurrentPrice } from "@/types/coins";
+import type { CoinCurrentPrice, Currency } from "@/types/coins";
 import { formatCurrency } from "@/utils/coins";
 
 import { styles } from "./CoinGraph.styles";
 
 type CoinGraphProps = {
   coinId: string;
-  currency: string;
+  currency: Currency;
   currentPrice?: CoinCurrentPrice;
 };
 
@@ -39,7 +39,7 @@ export default function CoinGraph({
 
   return (
     <>
-      <Text variant="headlineSmall" style={styles.priceHeading}>
+      <Text variant="headline" style={styles.priceHeading}>
         {formatCurrency(currentPrice?.[currency], currency)}
       </Text>
       <View style={styles.graphContainer}>

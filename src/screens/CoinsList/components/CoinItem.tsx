@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, View } from "react-native";
-import { Text } from "react-native-paper";
+import { Text } from "@/core/components";
 
 import type { CoinMarket } from "@/types/coins";
 import type { RootStackNavigationProp } from "@/types/navigation";
@@ -30,12 +30,12 @@ export default function CoinItem({ coin }: CoinItemProps) {
       <>
         <CoinImage source={coin.image} />
         <View style={styles.leftContent}>
-          <Text variant="titleMedium">{coin.name}</Text>
-          <Text variant="labelSmall">{coin.symbol.toUpperCase()}</Text>
-          <Text variant="labelSmall">{`Rank #${coin.market_cap_rank}`}</Text>
+          <Text variant="subheading">{coin.name}</Text>
+          <Text variant="caption">{coin.symbol.toUpperCase()}</Text>
+          <Text variant="caption">{`Rank #${coin.market_cap_rank}`}</Text>
         </View>
         <View style={styles.rightContent}>
-          <Text variant="titleMedium" style={styles.rightContentText}>
+          <Text variant="subheading" style={styles.rightContentText}>
             {formatCurrency(coin.current_price)}
           </Text>
           <PriceChangeLabel

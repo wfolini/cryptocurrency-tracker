@@ -1,8 +1,8 @@
 import { FlashList } from "@shopify/flash-list";
 import React from "react";
 import { type StyleProp, View, type ViewStyle } from "react-native";
-import { Text } from "react-native-paper";
 
+import { Text } from "@/core/components";
 import type { CoinMarket } from "@/types/coins";
 
 import CoinItem from "./CoinItem";
@@ -16,9 +16,7 @@ type CoinsListProps = {
 export default function CoinsList({ coins, style }: CoinsListProps) {
   return (
     <View style={style}>
-      <Text variant="titleLarge" style={styles.title}>
-        Market
-      </Text>
+      <Text variant="title" style={styles.title}>Market</Text>
       <FlashList
         data={coins}
         renderItem={({ item }) => <CoinItem coin={item} />}

@@ -1,6 +1,6 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { Text } from "@/core/components";
 
 import { styles } from "./PriceChangeLabel.styles";
 
@@ -18,8 +18,8 @@ export function PriceChangeLabel({
 
   return priceChange ? (
     <View style={styles.container}>
-      <Text variant="labelSmall">{`${timeFrame}`}</Text>
-      <Text variant="labelSmall">
+      <Text>{`${timeFrame}`}</Text>
+      <Text>
         {isBullish || isBearish ? (
           <FontAwesome
             style={[isBullish && styles.bullish, isBearish && styles.bearish]}

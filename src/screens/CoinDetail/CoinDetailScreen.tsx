@@ -1,7 +1,7 @@
 import { FlashList, type ListRenderItemInfo } from "@shopify/flash-list";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { Text } from "react-native-paper";
+import { Text } from "@/core/components";
 
 import { DEFAULT_CURRENCY } from "@/constants/coins";
 import CoinImage from "@/core/components/CoinImage";
@@ -22,8 +22,8 @@ function CoinStatistic({
 }: ListRenderItemInfo<CoinStatisticData>) {
   return (
     <View style={styles.statisticRow}>
-      <Text variant="bodyLarge">{label}</Text>
-      <Text variant="titleMedium">{value}</Text>
+      <Text>{label}</Text>
+      <Text variant="label">{value}</Text>
     </View>
   );
 }
@@ -50,7 +50,7 @@ export default function CoinDetailScreen({
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerSection}>
         <CoinImage source={coinData?.image?.large} />
-        <Text variant="headlineSmall">{coinData?.symbol?.toUpperCase()}</Text>
+        <Text variant="title">{coinData?.symbol?.toUpperCase()}</Text>
         <CurrencySelector
           selectedCurrency={currency}
           onCurrencyChange={handleCurrencyChange}
@@ -63,7 +63,7 @@ export default function CoinDetailScreen({
         currency={currency}
       />
       <View style={styles.statisticSection}>
-        <Text variant="titleMedium">Statistic</Text>
+        <Text variant="title">Statistic</Text>
         <FlashList
           data={coinStatisticData}
           renderItem={CoinStatistic}

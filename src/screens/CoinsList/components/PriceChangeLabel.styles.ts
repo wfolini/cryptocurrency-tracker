@@ -5,7 +5,7 @@ import colors from "@/constants/colors";
 export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    width: 80,
+    width: 95,
     justifyContent: "space-between",
   },
   bullish: {
