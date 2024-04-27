@@ -1,21 +1,23 @@
 import { FlashList, type ListRenderItemInfo } from "@shopify/flash-list";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { Text } from "@/core/components";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { DEFAULT_CURRENCY } from "@/constants/coins";
+import { Text } from "@/core/components";
 import CoinImage from "@/core/components/CoinImage";
 import { useCoinDetail } from "@/hooks/coins/useCoinDetail";
 import type { Currency } from "@/types/coins";
 import type { RootStackScreenProps } from "@/types/navigation";
+import { removeHTMLTags } from "@/utils/coins";
 
 import { styles } from "./CoinDetailScreen.styles";
 import CoinGraph from "./components/CoinGraph";
-import { CurrencySelector } from "./components/CurrencySelector";
 import {
   type CoinStatisticData,
   useCoinStatisticData,
 } from "./hooks/useCoinStatisticData";
+import { CoinActionButtons } from "./components/CoinActionButtons";
 
 function CoinStatistic({
   item: { label, value },
@@ -31,10 +33,10 @@ function CoinStatistic({
 export default function CoinDetailScreen({
   route,
 }: RootStackScreenProps<"CoinDetail">) {
-  const { coinId } = route.params;
+  const { coinId, coinName } = route.params;
 
   const [currency, setCurrency] = useState<Currency>(DEFAULT_CURRENCY);
-
+  const insets = useSafeAreaInsets();
   const { isFetching, coinData } = useCoinDetail(coinId);
   const coinStatisticData = useCoinStatisticData(
     coinData?.market_data,
@@ -47,14 +49,23 @@ export default function CoinDetailScreen({
 
   //  TODO: Improve loading state UI
   return isFetching ? null : (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={[
+        styles.container,
+        {
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
       <View style={styles.headerSection}>
-        <CoinImage source={coinData?.image?.large} />
-        <Text variant="title">{coinData?.symbol?.toUpperCase()}</Text>
-        <CurrencySelector
+        <View style={styles.headerGroup}>
+          <CoinImage source={coinData?.image?.large} />
+          <Text variant="title">{coinData?.symbol?.toUpperCase()}</Text>
+        </View>
+        <CoinActionButtons
           selectedCurrency={currency}
           onCurrencyChange={handleCurrencyChange}
-          style={{ marginLeft: "auto" }}
+          style={styles.headerGroup}
         />
       </View>
       <CoinGraph
@@ -62,17 +73,23 @@ export default function CoinDetailScreen({
         currentPrice={coinData?.market_data?.current_price}
         currency={currency}
       />
-      <View style={styles.statisticSection}>
+      <View style={styles.infoSection}>
         <Text variant="title">Statistic</Text>
-        <FlashList
-          data={coinStatisticData}
-          renderItem={CoinStatistic}
-          keyExtractor={(item) => item.label}
-          ItemSeparatorComponent={() => (
-            <View style={styles.statisticSeparator} />
-          )}
-          estimatedItemSize={coinStatisticData.length}
-        />
+        <View style={styles.statisticList}>
+          <FlashList
+            data={coinStatisticData}
+            renderItem={CoinStatistic}
+            keyExtractor={(item) => item.label}
+            ItemSeparatorComponent={() => (
+              <View style={styles.statisticSeparator} />
+            )}
+            estimatedItemSize={40}
+          />
+        </View>
+      </View>
+      <View style={styles.infoSection}>
+        <Text variant="title">{`About ${coinName}`}</Text>
+        <Text>{removeHTMLTags(coinData?.description?.en)}</Text>
       </View>
     </ScrollView>
   );

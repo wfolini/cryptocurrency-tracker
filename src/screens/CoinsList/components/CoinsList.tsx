@@ -16,12 +16,14 @@ type CoinsListProps = {
 export default function CoinsList({ coins, style }: CoinsListProps) {
   return (
     <View style={style}>
-      <Text variant="title" style={styles.title}>Market</Text>
+      <Text variant="title" style={styles.title}>
+        Market
+      </Text>
       <FlashList
         data={coins}
         renderItem={({ item }) => <CoinItem coin={item} />}
-        ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
-        estimatedItemSize={10}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        estimatedItemSize={75}
         keyExtractor={({ id }) => id}
       />
     </View>

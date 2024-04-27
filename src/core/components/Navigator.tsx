@@ -12,6 +12,7 @@ import { theme } from "@/core/theme";
 import CoinDetailScreen from "@/screens/CoinDetail/CoinDetailScreen";
 import CoinsListScreen from "@/screens/CoinsList/CoinsListScreen";
 import type { RootStackParamList } from "@/types/navigation";
+import type { ThemeProp } from "react-native-paper/lib/typescript/types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -28,7 +29,7 @@ export default function Navigator() {
   }
 
   return (
-    <PaperProvider theme={theme}>
+    <PaperProvider theme={theme as ThemeProp}>
       <NavigationContainer theme={theme}>
         <Stack.Navigator initialRouteName="CoinsList">
           <Stack.Screen

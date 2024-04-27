@@ -13,20 +13,19 @@ export default function CoinsListScreen() {
   const { coins } = useCoinsList();
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={[
+        styles.container,
+        {
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
       <View style={styles.topSection}>
         <Text variant="headline">Hi, Walter</Text>
         <Text variant="caption">Welcome back</Text>
       </View>
-      <CoinsList
-        coins={coins}
-        style={[
-          styles.coinsListSection,
-          {
-            paddingBottom: insets.bottom,
-          },
-        ]}
-      />
+      <CoinsList coins={coins} style={styles.coinsListSection} />
     </ScrollView>
   );
 }

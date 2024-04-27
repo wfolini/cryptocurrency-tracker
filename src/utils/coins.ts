@@ -14,3 +14,7 @@ export function formatCurrency(
       }).format(value)
     : "-";
 }
+
+export function removeHTMLTags(text?: string) {
+  return text?.replace(/<[^>]*>?/gm, "") ?? "";
+}

@@ -76,7 +76,7 @@ const paperTheme = {
     surface: colors.white,
     error: colors.red,
     text: colors.black,
-    onSurface: colors.black,
+    onSurface: colors.lightGray,
     notification: colors.green,
     bullish: colors.green,
     bearish: colors.red,

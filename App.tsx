@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { Navigator } from "@/core/components";
+import Navigator from "@/core/components/Navigator";
 
 const queryClient = new QueryClient();
 
