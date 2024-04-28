@@ -1,9 +1,11 @@
-import colors from "@/constants/colors";
 import { StyleSheet } from "react-native";
+
+import colors from "@/constants/colors";
 
 export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
+    paddingBottom: 20,
     gap: 30,
   },
   headerSection: {
@@ -16,7 +18,7 @@ export const styles = StyleSheet.create({
   headerGroup: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 10
+    gap: 10,
   },
   infoSection: {
     marginHorizontal: 20,

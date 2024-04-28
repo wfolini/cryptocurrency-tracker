@@ -1,7 +1,6 @@
 import { FlashList, type ListRenderItemInfo } from "@shopify/flash-list";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { DEFAULT_CURRENCY } from "@/constants/coins";
 import { Text } from "@/core/components";
@@ -36,7 +35,6 @@ export default function CoinDetailScreen({
   const { coinId, coinName } = route.params;
 
   const [currency, setCurrency] = useState<Currency>(DEFAULT_CURRENCY);
-  const insets = useSafeAreaInsets();
   const { isFetching, coinData } = useCoinDetail(coinId);
   const coinStatisticData = useCoinStatisticData(
     coinData?.market_data,
@@ -49,14 +47,7 @@ export default function CoinDetailScreen({
 
   //  TODO: Improve loading state UI
   return isFetching ? null : (
-    <ScrollView
-      contentContainerStyle={[
-        styles.container,
-        {
-          paddingBottom: insets.bottom,
-        },
-      ]}
-    >
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerSection}>
         <View style={styles.headerGroup}>
           <CoinImage source={coinData?.image?.large} />
@@ -87,10 +78,12 @@ export default function CoinDetailScreen({
           />
         </View>
       </View>
-      <View style={styles.infoSection}>
-        <Text variant="title">{`About ${coinName}`}</Text>
-        <Text>{removeHTMLTags(coinData?.description?.en)}</Text>
-      </View>
+      {coinData?.description?.en ? (
+        <View style={styles.infoSection}>
+          <Text variant="title">{`About ${coinName}`}</Text>
+          <Text>{removeHTMLTags(coinData?.description?.en)}</Text>
+        </View>
+      ) : null}
     </ScrollView>
   );
 }

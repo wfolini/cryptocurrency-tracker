@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import type { GraphPoint } from "react-native-graph";
 
 import { coinHistoricalChartDataByID } from "@/api/coins";
+import type { Currency } from "@/types/coins";
 
 export function useCoinPriceHistory({
   id,
@@ -10,7 +11,7 @@ export function useCoinPriceHistory({
   days,
 }: {
   id: string;
-  currency?: string;
+  currency?: Currency;
   days?: number;
 }) {
   const { data, ...queryResult } = useQuery({

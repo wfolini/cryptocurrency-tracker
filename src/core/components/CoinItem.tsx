@@ -1,14 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, View } from "react-native";
-import { Text } from "@/core/components";
 
+import { Text } from "@/core/components";
 import type { CoinMarket } from "@/types/coins";
 import type { RootStackNavigationProp } from "@/types/navigation";
-
 import { formatCurrency } from "@/utils/coins";
-import CoinImage from "../../../core/components/CoinImage";
+
+import CoinImage from "./CoinImage";
 import { styles } from "./CoinItem.styles";
-import { PriceChangeLabel } from "./PriceChangeLabel";
+import PriceChangeLabel from "./PriceChangeLabel";
 
 type CoinItemProps = {
   coin: CoinMarket;

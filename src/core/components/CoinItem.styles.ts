@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
     height: 70,
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 15,
     gap: 15,
   },
   leftContent: {

@@ -1,10 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  title: {
-    paddingBottom: 10,
+  listContent: {
+    padding: 20,
   },
-  separator: {
+  listFooter: {
+    marginTop: 20,
+  },
+  coinItemSeparator: {
     height: 5,
   },
 });

@@ -1,5 +1,6 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { View } from "react-native";
+
 import { Text } from "@/core/components";
 
 import { styles } from "./PriceChangeLabel.styles";
@@ -9,7 +10,7 @@ type PriceChangeLabelProps = {
   timeFrame: string;
 };
 
-export function PriceChangeLabel({
+export default function PriceChangeLabel({
   priceChange,
   timeFrame,
 }: PriceChangeLabelProps) {

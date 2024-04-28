@@ -1,20 +1,85 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   Poppins_400Regular,
   Poppins_500Medium,
   Poppins_600SemiBold,
   useFonts,
 } from "@expo-google-fonts/poppins";
+import { Feather } from "@expo/vector-icons";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { PaperProvider } from "react-native-paper";
+import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
+import type { ThemeProp } from "react-native-paper/lib/typescript/types";
 
 import { theme } from "@/core/theme";
 import CoinDetailScreen from "@/screens/CoinDetail/CoinDetailScreen";
+import CoinSearch from "@/screens/CoinSearch/CoinSearchScreen";
 import CoinsListScreen from "@/screens/CoinsList/CoinsListScreen";
-import type { RootStackParamList } from "@/types/navigation";
-import type { ThemeProp } from "react-native-paper/lib/typescript/types";
+import type { HomeTabParamList, RootStackParamList } from "@/types/navigation";
 
+const Tab = createMaterialBottomTabNavigator<HomeTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
+
+function HomeStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        headerTitleStyle: {
+          fontFamily: "Poppins_600SemiBold",
+          fontSize: 18,
+        },
+      }}
+    >
+      <Stack.Screen
+        name="CoinsList"
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+        component={CoinsListScreen}
+      />
+      <Stack.Screen
+        name="CoinDetail"
+        component={CoinDetailScreen}
+        options={({ route }) => ({
+          title: route.params.coinName,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function MarketStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        headerTitleStyle: {
+          fontFamily: "Poppins_600SemiBold",
+          fontSize: 18,
+        },
+      }}
+    >
+      <Stack.Screen
+        name="CoinSearch"
+        component={CoinSearch}
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="CoinDetail"
+        component={CoinDetailScreen}
+        options={({ route }) => ({
+          title: route.params.coinName,
+          headerShadowVisible: false,
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function Navigator() {
   const [fontsLoaded, fontError] = useFonts({
@@ -31,24 +96,30 @@ export default function Navigator() {
   return (
     <PaperProvider theme={theme as ThemeProp}>
       <NavigationContainer theme={theme}>
-        <Stack.Navigator initialRouteName="CoinsList">
-          <Stack.Screen
-            name="CoinsList"
-            component={CoinsListScreen}
+        <Tab.Navigator
+          barStyle={{ backgroundColor: theme.colors.background }}
+          activeColor={theme.colors.primary}
+          inactiveColor={theme.colors.accent}
+        >
+          <Tab.Screen
+            name="Home"
+            component={HomeStack}
             options={{
-              title: "",
-              headerShadowVisible: false,
+              tabBarIcon: (props) => (
+                <Feather name="home" size={22} {...props} />
+              ),
             }}
           />
-          <Stack.Screen
-            name="CoinDetail"
-            component={CoinDetailScreen}
-            options={({ route }) => ({
-              title: route.params.coinName,
-              headerShadowVisible: false,
-            })}
+          <Tab.Screen
+            name="Market"
+            component={MarketStack}
+            options={{
+              tabBarIcon: (props) => (
+                <Feather name="bar-chart-2" size={22} {...props} />
+              ),
+            }}
           />
-        </Stack.Navigator>
+        </Tab.Navigator>
       </NavigationContainer>
     </PaperProvider>
   );

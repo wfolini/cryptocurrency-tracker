@@ -71,7 +71,7 @@ const paperTheme = {
   colors: {
     ...MD2LightTheme.colors,
     primary: colors.black,
-    accent: colors.green,
+    accent: colors.darkGray,
     background: colors.white,
     surface: colors.white,
     error: colors.red,

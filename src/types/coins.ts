@@ -1,12 +1,12 @@
 import type { CURRENCIES } from "@/constants/coins";
 
-export interface BasicCoin {
+export interface BaseCoin {
   id: string;
   name: string;
   symbol: string;
 }
 
-export interface CoinMarket extends BasicCoin {
+export interface CoinMarket extends BaseCoin {
   image?: string;
   current_price?: number;
   market_cap?: number;
@@ -108,10 +108,7 @@ export interface Image {
   large?: string;
 }
 
-export interface CoinDetail {
-  id?: string;
-  symbol?: string;
-  name?: string;
+export interface CoinDetail extends BaseCoin {
   asset_platform_id?: null;
   block_time_in_minutes?: number;
   hashing_algorithm?: string;
@@ -141,4 +138,33 @@ export interface CoinMarketChart {
   prices: number[][];
   market_caps: number[][];
   total_volumes: number[][];
+}
+
+export interface Exchange {
+  id: string;
+  name: string;
+  year_established: number;
+  country: string;
+  description: string;
+  url: string;
+  image: string;
+  has_trading_incentive: boolean;
+  trust_score: number;
+  trust_score_rank: number;
+  trade_volume_24h_btc: number;
+  trade_volume_24h_btc_normalized: number;
+}
+
+export interface CoinItem extends BaseCoin {
+  api_symbol?: string;
+  market_cap_rank?: number;
+  thumb?: string;
+  large?: string;
+}
+
+export interface CoinSearch {
+  coins?: CoinItem[];
+  exchanges?: Exchange[];
+  categories?: string[];
+  nfts?: string[];
 }
