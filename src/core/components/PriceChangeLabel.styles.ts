@@ -5,8 +5,16 @@ import colors from "@/constants/colors";
 export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    width: 95,
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    gap: 2,
+  },
+  label: {
+    width: 60,
+    textAlign: "right",
+  },
+  arrow: {
+    fontSize: 14,
   },
   bullish: {
     color: colors.green,

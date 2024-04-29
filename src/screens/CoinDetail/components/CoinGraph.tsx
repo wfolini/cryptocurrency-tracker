@@ -1,9 +1,9 @@
-import { useMemo } from "react";
-import { View } from "react-native";
+import { useMemo, useState } from "react";
+import { View, ActivityIndicator } from "react-native";
 import { LineGraph } from "react-native-graph";
-import { ActivityIndicator } from "react-native-paper";
 
 import { Text } from "@/core/components";
+import PriceChangeLabel from "@/core/components/PriceChangeLabel";
 import colors from "@/constants/colors";
 import { useCoinPriceHistory } from "@/hooks/coins/useCoinPriceHistory";
 import type { CoinCurrentPrice, Currency } from "@/types/coins";
@@ -15,13 +15,18 @@ type CoinGraphProps = {
   coinId: string;
   currency: Currency;
   currentPrice?: CoinCurrentPrice;
+  priceChange30d?: number;
 };
 
 export default function CoinGraph({
   coinId,
   currency,
   currentPrice,
+  priceChange30d,
 }: CoinGraphProps) {
+  const [price, setPrice] = useState<number | undefined>(
+    currentPrice?.[currency]
+  );
   const { isFetching, coinPriceHistory } = useCoinPriceHistory({
     id: coinId,
     currency,
@@ -39,12 +44,17 @@ export default function CoinGraph({
 
   return (
     <>
-      <Text variant="headline" style={styles.priceHeading}>
-        {formatCurrency(currentPrice?.[currency], currency)}
-      </Text>
+      <View style={styles.header}>
+        <Text variant="headline">{formatCurrency(price, currency)}</Text>
+        <PriceChangeLabel
+          priceChange={priceChange30d}
+          timeFrame="30d"
+          style={styles.priceChangeLabel}
+        />
+      </View>
       <View style={styles.graphContainer}>
         {isFetching ? (
-          <ActivityIndicator animating={true} color={colors.black} />
+          <ActivityIndicator />
         ) : (
           <LineGraph
             style={styles.graph}
@@ -54,6 +64,8 @@ export default function CoinGraph({
             enablePanGesture
             gradientFillColors={graphGradientColors}
             verticalPadding={30}
+            onPointSelected={(price) => setPrice(price.value)}
+            onGestureEnd={() => setPrice(currentPrice?.[currency])}
           />
         )}
       </View>

@@ -1,8 +1,11 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  priceHeading: {
-    marginLeft: 20,
+  header: {
+    marginHorizontal: 20,
+  },
+  priceChangeLabel: {
+    alignSelf: "flex-start",
   },
   graphContainer: {
     height: 200,

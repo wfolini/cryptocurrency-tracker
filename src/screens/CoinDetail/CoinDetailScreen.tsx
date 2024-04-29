@@ -64,6 +64,7 @@ export default function CoinDetailScreen({
         coinId={coinId}
         currentPrice={coinData?.market_data?.current_price}
         currency={currency}
+        priceChange30d={coinData?.market_data?.price_change_percentage_30d}
       />
       <View style={styles.infoSection}>
         <Text variant="title">Statistic</Text>
