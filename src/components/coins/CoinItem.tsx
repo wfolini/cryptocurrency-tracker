@@ -29,14 +29,14 @@ export default function CoinItem({ coin, simple }: CoinItemProps) {
       }
     >
       <CoinImage source={coin.image} />
-      <View style={{ flexDirection: "row", gap: 10 }}>
-        <View style={styles.leftContent}>
-          <Text variant="subheading">{coin.name}</Text>
-          <Text variant="caption">{coin.symbol.toUpperCase()}</Text>
-          {!simple ? (
-            <Text variant="caption">{`Rank #${coin.market_cap_rank}`}</Text>
-          ) : null}
-        </View>
+      <View style={styles.leftContent}>
+        <Text variant="subheading" ellipsizeMode={"tail"} numberOfLines={1}>
+          {coin.name}
+        </Text>
+        <Text variant="caption">{coin.symbol.toUpperCase()}</Text>
+        {!simple ? (
+          <Text variant="caption">{`Rank #${coin.market_cap_rank}`}</Text>
+        ) : null}
       </View>
       <View style={styles.rightContent}>
         <Text variant="subheading" style={styles.rightContentText}>

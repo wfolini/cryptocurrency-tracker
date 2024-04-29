@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     height: 60,
   },
   leftContent: {
+    flex: 1,
     gap: 2,
   },
   rightContent: {
