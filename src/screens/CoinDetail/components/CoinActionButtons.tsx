@@ -3,11 +3,11 @@ import { type StyleProp, View, type ViewStyle } from "react-native";
 import { Button, Menu, useTheme } from "react-native-paper";
 
 import { CURRENCIES } from "@/constants/coins";
+import type { Theme } from "@/core/theme";
+import { useFavoriteCoinsStore } from "@/hooks/coins/useFavoriteCoinsStore";
 import type { Currency } from "@/types/coins";
 
 import { styles } from "./CoinActionButtons.styles";
-import { useFavoriteCoinsStore } from "@/hooks/coins/useFavoriteCoinsStore";
-import type { Theme } from "@/core/theme";
 
 type CoinActionButtonsProps = {
   coinId: string;
@@ -16,7 +16,7 @@ type CoinActionButtonsProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-export function CoinActionButtons({
+export default function CoinActionButtons({
   selectedCurrency,
   onCurrencyChange,
   style,

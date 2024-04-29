@@ -3,8 +3,8 @@ import React from "react";
 import { ActivityIndicator, RefreshControl, View } from "react-native";
 import { useTheme } from "react-native-paper";
 
-import { EmptyState, Text } from "@/core/components";
-import CoinsList from "@/core/components/CoinsList";
+import { EmptyState, Text } from "@/components";
+import { CoinsList } from "@/components/coins";
 import type { Theme } from "@/core/theme";
 import { useCoinsList } from "@/hooks/coins/useCoinsList";
 import { useFavoriteCoinsStore } from "@/hooks/coins/useFavoriteCoinsStore";

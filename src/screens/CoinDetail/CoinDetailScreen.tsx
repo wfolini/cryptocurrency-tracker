@@ -2,21 +2,21 @@ import { FlashList, type ListRenderItemInfo } from "@shopify/flash-list";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 
+import { Text } from "@/components";
+import { CoinImage } from "@/components/coins";
 import { DEFAULT_CURRENCY } from "@/constants/coins";
-import { Text } from "@/core/components";
-import CoinImage from "@/core/components/CoinImage";
 import { useCoinDetail } from "@/hooks/coins/useCoinDetail";
 import type { Currency } from "@/types/coins";
 import type { RootStackScreenProps } from "@/types/navigation";
 import { removeHTMLTags } from "@/utils/coins";
 
 import { styles } from "./CoinDetailScreen.styles";
+import CoinActionButtons from "./components/CoinActionButtons";
 import CoinGraph from "./components/CoinGraph";
 import {
   type CoinStatisticData,
   useCoinStatisticData,
 } from "./hooks/useCoinStatisticData";
-import { CoinActionButtons } from "./components/CoinActionButtons";
 
 function CoinStatistic({
   item: { label, value },

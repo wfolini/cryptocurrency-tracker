@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { View, type ViewStyle } from "react-native";
 
-import { Text } from "@/core/components";
+import { Text } from "@/components";
 
 import { styles } from "./PriceChangeLabel.styles";
 

@@ -8,8 +8,8 @@ import {
 import { TextInput, useTheme } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { EmptyState, Text } from "@/core/components";
-import CoinsList from "@/core/components/CoinsList";
+import { EmptyState, Text } from "@/components";
+import { CoinsList } from "@/components/coins";
 import type { Theme } from "@/core/theme";
 import { useCoinSearch } from "@/hooks/coins/useCoinSearch";
 import { useCoinsList } from "@/hooks/coins/useCoinsList";

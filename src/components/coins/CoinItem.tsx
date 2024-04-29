@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, View } from "react-native";
 
-import { Text } from "@/core/components";
+import { Text } from "@/components";
 import type { CoinMarket } from "@/types/coins";
 import type { RootStackNavigationProp } from "@/types/navigation";
 import { formatCurrency } from "@/utils/coins";
