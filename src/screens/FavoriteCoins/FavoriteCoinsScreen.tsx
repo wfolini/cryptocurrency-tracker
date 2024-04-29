@@ -1,13 +1,12 @@
 import React from "react";
 import { ActivityIndicator, RefreshControl, View } from "react-native";
 
-import { Text } from "@/core/components";
+import { Text, EmptyState } from "@/core/components";
 import CoinsList from "@/core/components/CoinsList";
 import { useCoinsList } from "@/hooks/coins/useCoinsList";
 import { useFavoriteCoinsStore } from "@/hooks/coins/useFavoriteCoinsStore";
 
 import { styles } from "./FavoriteCoinsScreen.styles";
-import { EmptyFavoriteCoinsState } from "./components/EmptyFavoriteCoinsState";
 
 export default function FavoriteCoinsScreen() {
   const { getFavoriteCoinsStringQuery } = useFavoriteCoinsStore();
@@ -25,7 +24,16 @@ export default function FavoriteCoinsScreen() {
         data={coins}
         ListHeaderComponentStyle={styles.listHeader}
         ListHeaderComponent={() => <Text variant="title">Favorites</Text>}
-        ListEmptyComponent={emptyFavCoinsList ? EmptyFavoriteCoinsState : null}
+        ListEmptyComponent={
+          emptyFavCoinsList ? (
+            <EmptyState
+              icon="heart"
+              title="No favorite cryptocurrency saved"
+              caption="Click on the Heart button at the top of the detail screen of any
+        cryptocurrency to start adding favorites"
+            />
+          ) : null
+        }
         ListFooterComponent={isFetchingNextPage ? ActivityIndicator : null}
         onEndReached={
           !emptyFavCoinsList && !isFetching ? fetchNextPage : undefined

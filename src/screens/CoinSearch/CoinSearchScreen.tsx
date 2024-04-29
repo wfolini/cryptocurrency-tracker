@@ -8,7 +8,7 @@ import {
 import { TextInput, useTheme } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { Text } from "@/core/components";
+import { EmptyState, Text } from "@/core/components";
 import CoinsList from "@/core/components/CoinsList";
 import type { Theme } from "@/core/theme";
 import { useCoinSearch } from "@/hooks/coins/useCoinSearch";
@@ -25,8 +25,14 @@ export default function CoinSearchScreen() {
 
   const debouncedSearchQuery = useDebounce(searchQuery);
   const { coinsIDsSearchResult } = useCoinSearch(debouncedSearchQuery);
-  const { coins, fetchNextPage, isFetching, isFetchingNextPage, refetch } =
-    useCoinsList({ coinIds: coinsIDsSearchResult, perPage: 20 });
+  const {
+    coins,
+    fetchNextPage,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+    refetch,
+  } = useCoinsList({ coinIds: coinsIDsSearchResult, perPage: 20 });
 
   const handleClearSearch = () => {
     setSearchQuery("");
@@ -57,15 +63,27 @@ export default function CoinSearchScreen() {
           returnKeyType="search"
           spellCheck={false}
         />
-        <Text variant="title">Cryptocurrencies</Text>
       </View>
       <CoinsList
+        ListHeaderComponentStyle={styles.listHeader}
         data={coins}
-        onEndReached={() => !isFetching && fetchNextPage()}
+        onEndReached={!isFetching && hasNextPage ? fetchNextPage : null}
+        ListFooterComponent={isFetchingNextPage ? ActivityIndicator : null}
+        ListEmptyComponent={
+          <EmptyState
+            icon="search"
+            title="No matches found"
+            caption="Please, check your spelling and try again"
+          />
+        }
         refreshControl={
           <RefreshControl refreshing={isFetching} onRefresh={refetch} />
         }
-        ListFooterComponent={isFetchingNextPage ? ActivityIndicator : null}
+        ListHeaderComponent={() => (
+          <Text variant="title">
+            {debouncedSearchQuery ? "Results" : "Cryptocurrencies"}
+          </Text>
+        )}
       />
     </View>
   );

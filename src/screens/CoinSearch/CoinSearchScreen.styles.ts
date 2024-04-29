@@ -16,4 +16,7 @@ export const styles = StyleSheet.create({
   searchInputUnderline: {
     height: 0,
   },
+  listHeader: {
+    marginBottom: 10,
+  },
 });
