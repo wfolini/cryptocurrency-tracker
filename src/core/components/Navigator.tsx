@@ -7,9 +7,10 @@ import {
 import { Feather } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
 import { PaperProvider } from "react-native-paper";
-import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
 import type { ThemeProp } from "react-native-paper/lib/typescript/types";
+import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
 
 import { theme } from "@/core/theme";
 import CoinDetailScreen from "@/screens/CoinDetail/CoinDetailScreen";
@@ -96,6 +97,7 @@ export default function Navigator() {
   return (
     <PaperProvider theme={theme as ThemeProp}>
       <NavigationContainer theme={theme}>
+        <StatusBar style="dark" />
         <Tab.Navigator
           barStyle={{ backgroundColor: theme.colors.background }}
           activeColor={theme.colors.primary}

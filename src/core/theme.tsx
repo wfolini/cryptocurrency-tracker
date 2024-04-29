@@ -24,6 +24,11 @@ const paperFontFamilyStyles = {
 };
 
 const customFontVariantsStyles = {
+  display: {
+    fontSize: 32,
+    fontFamily: "Poppins_600SemiBold",
+    fontWeight: "600",
+  },
   headline: {
     fontSize: 24,
     lineHeight: 32,
@@ -37,7 +42,7 @@ const customFontVariantsStyles = {
     fontWeight: "600",
   },
   subheading: {
-    fontSize: 14,
+    fontSize: 15,
     lineHeight: 24,
     fontFamily: "Poppins_600SemiBold",
     fontWeight: "600",

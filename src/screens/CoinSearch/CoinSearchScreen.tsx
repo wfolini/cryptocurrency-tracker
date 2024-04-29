@@ -35,15 +35,16 @@ export default function CoinSearchScreen() {
   } = useCoinsList({ coinIds: coinsIDsSearchResult, perPage: 20 });
 
   const handleClearSearch = () => {
-    setSearchQuery("");
     searchInputRef.current?.clear();
     searchInputRef.current?.blur();
+    setSearchQuery("");
   };
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.searchContainer}>
         <TextInput
+          value={searchQuery}
           ref={searchInputRef}
           left={<TextInput.Icon icon="magnify" color={theme.colors.accent} />}
           right={
@@ -60,8 +61,9 @@ export default function CoinSearchScreen() {
           onChangeText={setSearchQuery}
           placeholder="Search cryptocurrency"
           inputMode="search"
-          returnKeyType="search"
+          returnKeyType="done"
           spellCheck={false}
+          autoCorrect={false}
         />
       </View>
       <CoinsList
