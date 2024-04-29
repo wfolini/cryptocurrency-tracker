@@ -54,6 +54,7 @@ export default function CoinDetailScreen({
           <Text variant="title">{coinData?.symbol?.toUpperCase()}</Text>
         </View>
         <CoinActionButtons
+          coinId={coinId}
           selectedCurrency={currency}
           onCurrencyChange={handleCurrencyChange}
           style={styles.headerGroup}

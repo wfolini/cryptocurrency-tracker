@@ -14,7 +14,7 @@ import type { ThemeProp } from "react-native-paper/lib/typescript/types";
 import { theme } from "@/core/theme";
 import CoinDetailScreen from "@/screens/CoinDetail/CoinDetailScreen";
 import CoinSearch from "@/screens/CoinSearch/CoinSearchScreen";
-import CoinsListScreen from "@/screens/CoinsList/CoinsListScreen";
+import FavoriteCoinsScreen from "@/screens/FavoriteCoins/FavoriteCoinsScreen";
 import type { HomeTabParamList, RootStackParamList } from "@/types/navigation";
 
 const Tab = createMaterialBottomTabNavigator<HomeTabParamList>();
@@ -32,12 +32,12 @@ function HomeStack() {
       }}
     >
       <Stack.Screen
-        name="CoinsList"
+        name="FavoriteCoins"
         options={{
           title: "",
           headerShown: false,
         }}
-        component={CoinsListScreen}
+        component={FavoriteCoinsScreen}
       />
       <Stack.Screen
         name="CoinDetail"

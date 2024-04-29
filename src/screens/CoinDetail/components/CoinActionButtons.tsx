@@ -6,8 +6,11 @@ import { CURRENCIES } from "@/constants/coins";
 import type { Currency } from "@/types/coins";
 
 import { styles } from "./CoinActionButtons.styles";
+import { useFavoriteCoinsStore } from "@/hooks/coins/useFavoriteCoinsStore";
+import type { Theme } from "@/core/theme";
 
 type CoinActionButtonsProps = {
+  coinId: string;
   selectedCurrency: Currency;
   onCurrencyChange: (currency: Currency) => void;
   style?: StyleProp<ViewStyle>;
@@ -17,8 +20,10 @@ export function CoinActionButtons({
   selectedCurrency,
   onCurrencyChange,
   style,
+  coinId,
 }: CoinActionButtonsProps) {
-  const theme = useTheme();
+  const theme = useTheme<Theme>();
+  const { isCoinFavorite, toggleFavoriteCoin } = useFavoriteCoinsStore();
 
   const [visible, setVisible] = useState(false);
 
@@ -32,11 +37,14 @@ export function CoinActionButtons({
   return (
     <View style={style}>
       <Button
-        icon="heart"
+        icon={isCoinFavorite(coinId) ? "heart" : "heart-outline"}
         mode="contained-tonal"
-        onPress={() => {}} // TODO: Implement favorite feature
+        onPress={() => toggleFavoriteCoin(coinId)}
         compact
         labelStyle={styles.labelStyle}
+        textColor={
+          isCoinFavorite(coinId) ? theme.colors.favorite : theme.colors.primary
+        }
         buttonColor={theme.colors.onSurface}
       >
         {""}

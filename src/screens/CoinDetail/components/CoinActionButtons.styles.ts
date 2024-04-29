@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   labelStyle: {
     fontSize: 10,
   },
-  menuButton: { 
-    flexDirection: "row-reverse" 
+  menuButton: {
+    flexDirection: "row-reverse",
   },
 });

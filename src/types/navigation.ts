@@ -14,7 +14,7 @@ export type HomeTabParamList = {
 };
 export type RootStackParamList = {
   Home: NavigatorScreenParams<HomeTabParamList>;
-  CoinsList: undefined;
+  FavoriteCoins: undefined;
   CoinSearch: undefined;
   CoinDetail: { coinId: string; coinName: string };
 };

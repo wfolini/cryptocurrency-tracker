@@ -75,6 +75,7 @@ const paperTheme = {
     background: colors.white,
     surface: colors.white,
     error: colors.red,
+    favorite: colors.red,
     text: colors.black,
     onSurface: colors.lightGray,
     notification: colors.green,
