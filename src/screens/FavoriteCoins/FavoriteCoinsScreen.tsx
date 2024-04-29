@@ -21,6 +21,7 @@ export default function FavoriteCoinsScreen() {
         <Text variant="caption">Welcome back</Text>
       </View>
       <CoinsList
+        simpleItem
         data={coins}
         ListHeaderComponentStyle={styles.listHeader}
         ListHeaderComponent={() => <Text variant="title">Favorites</Text>}
