@@ -9,13 +9,13 @@ export function useCoinsList({
   coinIds: string | null | undefined;
   perPage?: number;
 }) {
-  // coinIds = null -> fetch all coins
-  // coinIds = "someid" -> fetch coins with id "someid"
-  // coinIds = "" || undefined -> don't fetch anything, returns empty array
-  const validQuery = coinIds !== "" && coinIds !== undefined;
+  // coinIds = null -> Fetch all coins
+  // coinIds = "someid" -> Fetch coins with id "someid"
+  // coinIds = "" || undefined -> Query with no results. Don't fetch anything, returns empty array
+  const validQuery = !(coinIds === "" || coinIds === undefined);
 
   const { data, ...queryResult } = useInfiniteQuery({
-    queryKey: ["coinsList", perPage, coinIds],
+    queryKey: ["coinsList", coinIds, perPage],
     queryFn: ({ pageParam }) =>
       coinsListWithMarketData({
         page: pageParam,
@@ -23,14 +23,15 @@ export function useCoinsList({
         perPage,
       }),
     getNextPageParam: (lastPage, allPages, lastPageParam) =>
-      lastPage.data.length === 0 ? undefined : lastPageParam + 1,
+      lastPage.data.length !== 0 ? lastPageParam + 1 : undefined,
     initialPageParam: 1,
-    select: (data) => data?.pages.flatMap((page) => page.data) ?? [],
+    select: (data) =>
+      validQuery ? data?.pages.flatMap((page) => page.data) : [],
     enabled: validQuery,
   });
 
   return {
-    coins: validQuery ? data : [],
+    coins: data,
     ...queryResult,
   };
 }

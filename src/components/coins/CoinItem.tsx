@@ -34,7 +34,7 @@ export default function CoinItem({ coin, simple }: CoinItemProps) {
           {coin.name}
         </Text>
         <Text variant="caption">{coin.symbol.toUpperCase()}</Text>
-        {!simple ? (
+        {!simple && coin.market_cap_rank ? (
           <Text variant="caption">{`Rank #${coin.market_cap_rank}`}</Text>
         ) : null}
       </View>

@@ -40,6 +40,9 @@ export default function CoinSearchScreen() {
     setSearchQuery("");
   };
 
+  const isValidQuery = coinsIDsSearchResult !== undefined;
+  const isAllCoins = coinsIDsSearchResult === null;
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.searchContainer}>
@@ -69,21 +72,25 @@ export default function CoinSearchScreen() {
       <CoinsList
         ListHeaderComponentStyle={styles.listHeader}
         data={coins}
-        onEndReached={!isFetching && hasNextPage ? fetchNextPage : null}
+        onEndReached={
+          !isFetching && hasNextPage && coins?.length ? fetchNextPage : null
+        }
         ListFooterComponent={isFetchingNextPage ? ActivityIndicator : null}
         ListEmptyComponent={
-          <EmptyState
-            icon="search"
-            title="No matches found"
-            caption="Please, check your spelling and try again"
-          />
+          isValidQuery && !isFetching ? (
+            <EmptyState
+              icon="search"
+              title="No matches found"
+              caption="Please, check your spelling and try again"
+            />
+          ) : null
         }
         refreshControl={
           <RefreshControl refreshing={isFetching} onRefresh={refetch} />
         }
         ListHeaderComponent={() => (
           <Text variant="title">
-            {debouncedSearchQuery ? "Results" : "Cryptocurrencies"}
+            {isAllCoins ? "Cryptocurrencies" : "Results"}
           </Text>
         )}
       />
