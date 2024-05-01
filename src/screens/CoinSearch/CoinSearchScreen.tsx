@@ -8,7 +8,7 @@ import {
 import { TextInput, useTheme } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { EmptyState, Text } from "@/components";
+import { EmptyState, Text, ErrorEmptyState } from "@/components";
 import { CoinsList } from "@/components/coins";
 import type { Theme } from "@/core/theme";
 import { useCoinSearch } from "@/hooks/coins/useCoinSearch";
@@ -32,6 +32,7 @@ export default function CoinSearchScreen() {
     isFetchingNextPage,
     hasNextPage,
     refetch,
+    isError,
   } = useCoinsList({ coinIds: coinsIDsSearchResult, perPage: 20 });
 
   const handleClearSearch = () => {
@@ -77,7 +78,9 @@ export default function CoinSearchScreen() {
         }
         ListFooterComponent={isFetchingNextPage ? ActivityIndicator : null}
         ListEmptyComponent={
-          isValidQuery && !isFetching ? (
+          isError ? (
+            ErrorEmptyState
+          ) : isValidQuery && !isFetching ? (
             <EmptyState
               icon="search"
               title="No matches found"

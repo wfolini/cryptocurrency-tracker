@@ -20,13 +20,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
+  graphSection: {
+    height: 200,
+  },
   infoSection: {
     marginHorizontal: 20,
     gap: 10,
-  },
-  statisticRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
   },
   statisticList: {
     height: 223,

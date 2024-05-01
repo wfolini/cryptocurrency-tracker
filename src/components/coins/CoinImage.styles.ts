@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   defaultCoinContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightGray,
     ...imageSizeStyle,
   },
   defaultCoin: {

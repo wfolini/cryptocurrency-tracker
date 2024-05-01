@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
   graphContainer: {
-    height: 200,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },

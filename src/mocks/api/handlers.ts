@@ -2,7 +2,7 @@ import { http, HttpResponse } from "msw";
 
 import type { CoinMarket, CoinMarketChart, CoinSearch } from "@/types/coins";
 
-function testBaseURL(path: string) {
+export function testBaseURL(path: string) {
   return new URL(path, "http://localhost").toString();
 }
 

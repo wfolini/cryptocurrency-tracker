@@ -3,7 +3,7 @@ import React from "react";
 import { ActivityIndicator, RefreshControl, View } from "react-native";
 import { useTheme } from "react-native-paper";
 
-import { EmptyState, Text } from "@/components";
+import { EmptyState, Text, ErrorEmptyState } from "@/components";
 import { CoinsList } from "@/components/coins";
 import type { Theme } from "@/core/theme";
 import { useCoinsList } from "@/hooks/coins/useCoinsList";
@@ -21,6 +21,7 @@ export default function FavoriteCoinsScreen() {
     isFetching,
     isFetchingNextPage,
     refetch,
+    isError,
   } = useCoinsList({ coinIds: getFavoriteCoinsStringQuery() });
 
   const emptyFavCoinsList = !getFavoriteCoinsStringQuery();
@@ -44,7 +45,9 @@ export default function FavoriteCoinsScreen() {
         ListHeaderComponentStyle={styles.listHeader}
         ListHeaderComponent={() => <Text variant="title">Favorites</Text>}
         ListEmptyComponent={
-          emptyFavCoinsList ? (
+          isError ? (
+            ErrorEmptyState
+          ) : emptyFavCoinsList ? (
             <EmptyState
               icon="heart"
               title="No favorite cryptocurrency saved"
