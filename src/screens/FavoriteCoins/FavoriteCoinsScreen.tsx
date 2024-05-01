@@ -17,9 +17,9 @@ export default function FavoriteCoinsScreen() {
   const {
     coins,
     fetchNextPage,
+    hasNextPage,
     isFetching,
     isFetchingNextPage,
-    hasNextPage,
     refetch,
   } = useCoinsList({ coinIds: getFavoriteCoinsStringQuery() });
 

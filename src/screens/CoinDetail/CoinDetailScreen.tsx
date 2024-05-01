@@ -35,7 +35,7 @@ export default function CoinDetailScreen({
   const { coinId, coinName } = route.params;
 
   const [currency, setCurrency] = useState<Currency>(DEFAULT_CURRENCY);
-  const { isFetching, coinData } = useCoinDetail(coinId);
+  const { coinData } = useCoinDetail(coinId);
   const coinStatisticData = useCoinStatisticData(
     coinData?.market_data,
     currency
@@ -45,8 +45,7 @@ export default function CoinDetailScreen({
     setCurrency(currency);
   };
 
-  //  TODO: Improve loading state UI
-  return isFetching ? null : (
+  return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerSection}>
         <View style={styles.headerGroup}>

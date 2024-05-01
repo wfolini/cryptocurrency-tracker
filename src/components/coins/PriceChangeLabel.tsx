@@ -18,8 +18,9 @@ export default function PriceChangeLabel({
 }: PriceChangeLabelProps) {
   const isBullish = !!priceChange && priceChange > 0;
   const isBearish = !!priceChange && priceChange < 0;
+  const price = priceChange ? `${Math.abs(priceChange).toFixed(2)}%` : "-";
 
-  return priceChange ? (
+  return (
     <View style={[styles.container, style]}>
       {timeFrame ? <Text variant="caption">{timeFrame}</Text> : null}
       <Text style={styles.label}>
@@ -33,8 +34,8 @@ export default function PriceChangeLabel({
             name={isBullish ? "caret-up" : "caret-down"}
           />
         ) : null}
-        <Text>{` ${Math.abs(priceChange).toFixed(2)}%`}</Text>
+        <Text>{` ${price}`}</Text>
       </Text>
     </View>
-  ) : null;
+  );
 }

@@ -4,7 +4,7 @@ import { coinsListWithMarketData } from "@/api/coins";
 
 export function useCoinsList({
   coinIds,
-  perPage,
+  perPage = 10,
 }: {
   coinIds: string | null | undefined;
   perPage?: number;
@@ -22,8 +22,10 @@ export function useCoinsList({
         ids: coinIds || undefined,
         perPage,
       }),
-    getNextPageParam: (lastPage, allPages, lastPageParam) =>
-      lastPage.data.length !== 0 ? lastPageParam + 1 : undefined,
+    getNextPageParam: (lastPage) =>
+      lastPage.data.length === perPage
+        ? lastPage.config.params.page + 1
+        : undefined,
     initialPageParam: 1,
     select: (data) =>
       validQuery ? data?.pages.flatMap((page) => page.data) : [],
