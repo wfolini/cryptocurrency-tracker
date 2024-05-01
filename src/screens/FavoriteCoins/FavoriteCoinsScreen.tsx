@@ -14,8 +14,14 @@ import { styles } from "./FavoriteCoinsScreen.styles";
 export default function FavoriteCoinsScreen() {
   const theme = useTheme<Theme>();
   const { getFavoriteCoinsStringQuery } = useFavoriteCoinsStore();
-  const { coins, fetchNextPage, isFetching, isFetchingNextPage, refetch } =
-    useCoinsList({ coinIds: getFavoriteCoinsStringQuery() });
+  const {
+    coins,
+    fetchNextPage,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+    refetch,
+  } = useCoinsList({ coinIds: getFavoriteCoinsStringQuery() });
 
   const emptyFavCoinsList = !getFavoriteCoinsStringQuery();
   return (
@@ -49,7 +55,9 @@ export default function FavoriteCoinsScreen() {
         }
         ListFooterComponent={isFetchingNextPage ? ActivityIndicator : null}
         onEndReached={
-          !emptyFavCoinsList && !isFetching ? fetchNextPage : undefined
+          !emptyFavCoinsList && !isFetching && hasNextPage
+            ? fetchNextPage
+            : null
         }
         refreshControl={
           !emptyFavCoinsList ? (

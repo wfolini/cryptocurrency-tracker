@@ -19,7 +19,7 @@ export default function CoinsList({ simpleItem, ...props }: CoinsListProps) {
       onEndReachedThreshold={0.3}
       renderItem={({ item }) => <CoinItem simple={simpleItem} coin={item} />}
       ItemSeparatorComponent={() => <View style={styles.coinItemSeparator} />}
-      keyExtractor={({ id }) => id}
+      keyExtractor={({ id }, index) => `${index}-${id}`}
       ListFooterComponentStyle={styles.listFooter}
       estimatedItemSize={simpleItem ? 60 : 70}
     />

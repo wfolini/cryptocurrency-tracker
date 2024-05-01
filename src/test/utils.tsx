@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react-native";
-import type * as React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { NavigationContainer } from "@react-navigation/native";
 
 const createTestQueryClient = () =>
   new QueryClient({
@@ -12,27 +12,33 @@ const createTestQueryClient = () =>
     },
   });
 
-export function renderWithClient(ui: React.ReactElement) {
+const Wrapper = ({
+  children,
+  client,
+}: {
+  children: React.ReactNode;
+  client: QueryClient;
+}) => (
+  <QueryClientProvider client={client}>
+    <NavigationContainer>{children}</NavigationContainer>
+  </QueryClientProvider>
+);
+
+export function renderWithWrapper(ui: React.ReactElement) {
   const testQueryClient = createTestQueryClient();
   const { rerender, ...result } = render(
-    <QueryClientProvider client={testQueryClient}>{ui}</QueryClientProvider>
+    <Wrapper client={testQueryClient}>{ui}</Wrapper>
   );
   return {
     ...result,
     rerender: (rerenderUi: React.ReactElement) =>
-      rerender(
-        <QueryClientProvider client={testQueryClient}>
-          {rerenderUi}
-        </QueryClientProvider>
-      ),
+      rerender(<Wrapper client={testQueryClient}>{rerenderUi}</Wrapper>),
   };
 }
 
 export function createWrapper() {
   const testQueryClient = createTestQueryClient();
   return ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={testQueryClient}>
-      {children}
-    </QueryClientProvider>
+    <Wrapper client={testQueryClient}>{children}</Wrapper>
   );
 }

@@ -102,7 +102,7 @@ export interface MarketData {
   market_cap_change_24h_in_currency?: { [key: string]: number };
   market_cap_change_percentage_24h_in_currency?: { [key: string]: number };
   total_supply?: number;
-  max_supply?: null;
+  max_supply?: number | null;
   circulating_supply?: number;
   last_updated?: Date;
 }

@@ -2,9 +2,9 @@ import { http, HttpResponse } from "msw";
 
 import type { CoinMarket, CoinMarketChart, CoinSearch } from "@/types/coins";
 
-const testBaseURL = (path: string) => {
+function testBaseURL(path: string) {
   return new URL(path, "http://localhost").toString();
-};
+}
 
 export const handlers = [
   http.get<never, never, CoinMarket[]>(
@@ -12,6 +12,7 @@ export const handlers = [
     ({ request }) => {
       const url = new URL(request.url);
       const ids = url.searchParams.get("ids");
+      const page = url.searchParams.get("page") || 1;
       const coins: CoinMarket[] = [
         {
           id: "bitcoin",
@@ -76,6 +77,9 @@ export const handlers = [
           last_updated: new Date("2024-04-30T22:17:27.884Z"),
         },
       ];
+      if (page > "1") {
+        return HttpResponse.json([]);
+      }
       if (!ids) {
         return HttpResponse.json(coins);
       }
