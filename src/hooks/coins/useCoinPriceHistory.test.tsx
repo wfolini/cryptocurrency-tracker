@@ -1,6 +1,8 @@
 import { renderHook, waitFor } from "@testing-library/react-native";
-import { useCoinPriceHistory } from "./useCoinPriceHistory";
+
 import { createWrapper } from "@/test/utils";
+
+import { useCoinPriceHistory } from "./useCoinPriceHistory";
 
 describe("useCoinPriceHistory hook", () => {
   test("returns bitcoin price history in usd in GraphPoint format", async () => {
