@@ -33,6 +33,8 @@ EXPO_PUBLIC_COIN_MARKET_AUTH_TOKEN=<YOUR_COINGECKO_AUTH_TOKEN>
 EXPO_PUBLIC_DEFAULT_CURRENCY=usd
 ```
 
+To create a new CoinGecko API key, [follow this guide](https://docs.coingecko.com/v3.0.1/reference/setting-up-your-api-key).
+
 ## Run the app on development mode
 
 First, install node packages:
