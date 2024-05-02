@@ -42,7 +42,7 @@ describe("FavoriteCoinsScreen", () => {
     });
   });
 
-  test("should render with a list of one favorite coin, including only bitcoin", async () => {
+  test("should render with a list of one favorite coin, including bitcoin and ethereum", async () => {
     const { result } = renderHook(() => useFavoriteCoinsStore(), {
       wrapper: createWrapper(),
     });
