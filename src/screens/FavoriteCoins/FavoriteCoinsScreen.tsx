@@ -1,9 +1,14 @@
 import { Image } from "expo-image";
 import React from "react";
-import { ActivityIndicator, RefreshControl, View } from "react-native";
+import { RefreshControl, View } from "react-native";
 import { useTheme } from "react-native-paper";
 
-import { EmptyState, Text, ErrorEmptyState } from "@/components";
+import {
+  ActivityIndicator,
+  EmptyState,
+  ErrorEmptyState,
+  Text,
+} from "@/components";
 import { CoinsList } from "@/components/coins";
 import type { Theme } from "@/core/theme";
 import { useCoinsList } from "@/hooks/coins/useCoinsList";

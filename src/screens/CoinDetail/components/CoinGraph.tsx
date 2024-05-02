@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { View } from "react-native";
 import { LineGraph } from "react-native-graph";
 
-import { Text } from "@/components";
+import { ActivityIndicator, Text } from "@/components";
 import { PriceChangeLabel } from "@/components/coins";
 import colors from "@/constants/colors";
 import { useCoinPriceHistory } from "@/hooks/coins/useCoinPriceHistory";
