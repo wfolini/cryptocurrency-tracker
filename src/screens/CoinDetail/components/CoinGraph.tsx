@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { LineGraph } from "react-native-graph";
 
@@ -27,6 +27,11 @@ export default function CoinGraph({
   const [price, setPrice] = useState<number | undefined>(
     currentPrice?.[currency]
   );
+
+  useEffect(() => {
+    setPrice(currentPrice?.[currency]);
+  }, [currentPrice, currency]);
+
   const { isFetching, coinPriceHistory } = useCoinPriceHistory({
     id: coinId,
     currency,
