@@ -69,6 +69,7 @@ export default function CoinDetailScreen({
               <View style={styles.statisticSeparator} />
             )}
             estimatedItemSize={20}
+            scrollEnabled={false}
           />
         </View>
       </View>
