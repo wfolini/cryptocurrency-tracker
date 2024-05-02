@@ -1,9 +1,3 @@
-import {
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
-  useFonts,
-} from "@expo-google-fonts/poppins";
 import { Feather } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -83,17 +77,6 @@ function MarketStack() {
 }
 
 export default function Navigator() {
-  const [fontsLoaded, fontError] = useFonts({
-    Poppins_400Regular,
-    Poppins_500Medium,
-    Poppins_600SemiBold,
-  });
-
-  // TODO: Improve it with splash screen
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
-
   return (
     <PaperProvider theme={theme as ThemeProp}>
       <NavigationContainer theme={theme}>

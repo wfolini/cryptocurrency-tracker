@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import Navigator from "@/components/Navigator";
+import AppLoader from "@/components/AppLoader";
 
 const queryClient = new QueryClient();
 
@@ -12,7 +13,9 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
-          <Navigator />
+          <AppLoader>
+            <Navigator />
+          </AppLoader>
         </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
