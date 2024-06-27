@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CoinTrack",
-    "slug": "cryptocurrency-tracker",
+    "slug": "cointrack",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,36 +16,27 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wfolini.cointrack"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.wfolini.cointrack"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      [
-        "expo-build-properties",
-        {
-          "ios": {
-            "newArchEnabled": true
-          },
-          "android": {
-            "newArchEnabled": true
-          }
-        }
-      ],
       "expo-font"
     ],
+    "owner": "wfolini",
     "extra": {
       "eas": {
-        "projectId": "9eef931b-64cc-4945-87f6-1dc52854132f"
+        "projectId": "c626ec3e-4944-484f-95b1-43c1b5b4d581"
       }
-    },
-    "owner": "wfolini"
+    }
   }
 }
