@@ -1,7 +1,5 @@
-import { Image } from "expo-image";
-import React from "react";
-import { RefreshControl, View } from "react-native";
-import { useTheme } from "react-native-paper";
+import React, { useRef } from "react";
+import { FlatList, RefreshControl, View } from "react-native";
 
 import {
   ActivityIndicator,
@@ -10,14 +8,17 @@ import {
   Text,
 } from "@/components";
 import { CoinsList } from "@/components/coins";
-import type { Theme } from "@/core/theme";
 import { useCoinsList } from "@/hooks/coins/useCoinsList";
 import { useFavoriteCoinsStore } from "@/hooks/coins/useFavoriteCoinsStore";
 
+import {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
 import { styles } from "./FavoriteCoinsScreen.styles";
+import Header, { MAX_HEIGHT, MIN_HEIGHT, THRESHOLD } from "./components/Header";
 
 export default function FavoriteCoinsScreen() {
-  const theme = useTheme<Theme>();
   const { getFavoriteCoinsStringQuery } = useFavoriteCoinsStore();
   const {
     coins,
@@ -28,27 +29,42 @@ export default function FavoriteCoinsScreen() {
     refetch,
     isError,
   } = useCoinsList({ coinIds: getFavoriteCoinsStringQuery() });
-
   const emptyFavCoinsList = !getFavoriteCoinsStringQuery();
+
+  const offsetY = useSharedValue(0);
+
+  const scrollViewRef = useRef<FlatList>();
+
+  const scrollHandler = useAnimatedScrollHandler(
+    {
+      onScroll: (event) => {
+        offsetY.value = event.contentOffset.y;
+        console.log(offsetY.value);
+      },
+      onEndDrag: (event) => {
+        if (offsetY.value < THRESHOLD && offsetY.value > -MAX_HEIGHT) {
+          // offsetY.value = withTiming(0);
+          // runOnJS({ animated: true, offset: 0 })(scrollViewRef?.current?.scrollToOffset)
+          // scrollViewRef?.current?.scrollToOffset({ offset: 0 });
+        } else if (offsetY.value >= THRESHOLD && offsetY.value < -MIN_HEIGHT) {
+          // offsetY.value = withTiming(MAX_HEIGHT);
+          // scrollViewRef?.current?.scrollToEnd();
+        }
+      },
+    },
+    []
+  );
+
   return (
     <View style={styles.container}>
-      <View
-        style={[styles.topSection, { backgroundColor: theme.colors.onSurface }]}
-      >
-        <Image
-          style={styles.avatar}
-          source={"https://github.com/wfolini.png"}
-          contentFit="cover"
-          transition={300}
-        />
-        <Text variant="display">Hi, Walter</Text>
-        <Text>Welcome back</Text>
-      </View>
+      <Header offsetY={offsetY} />
       <CoinsList
+        ref={scrollViewRef}
         simpleItem
         data={coins}
         ListHeaderComponentStyle={styles.listHeader}
         ListHeaderComponent={() => <Text variant="title">Favorites</Text>}
+        scrollEventThrottle={16}
         ListEmptyComponent={
           isError ? (
             ErrorEmptyState
@@ -72,6 +88,9 @@ export default function FavoriteCoinsScreen() {
             <RefreshControl refreshing={isFetching} onRefresh={refetch} />
           ) : undefined
         }
+        onScroll={scrollHandler}
+        contentInset={{ top: MAX_HEIGHT }}
+        scrollIndicatorInsets={{ top: MAX_HEIGHT }}
       />
     </View>
   );

@@ -1,27 +1,35 @@
 import { FlashList, type FlashListProps } from "@shopify/flash-list";
-import React from "react";
-import { View } from "react-native";
+import { forwardRef } from "react";
+import { View, FlatList, FlatListProps } from "react-native";
+import Animated from "react-native-reanimated";
 
 import type { CoinMarket } from "@/types/coins";
 
 import CoinItem from "./CoinItem";
 import { styles } from "./CoinsList.styles";
 
-type CoinsListProps = Omit<FlashListProps<CoinMarket>, "renderItem"> & {
+const AnimatedFlashList =
+  Animated.createAnimatedComponent<FlatListProps<CoinMarket>>(FlatList);
+
+type CoinsListProps = Omit<FlatListProps<CoinMarket>, "renderItem"> & {
   simpleItem?: boolean;
 };
 
-export default function CoinsList({ simpleItem, ...props }: CoinsListProps) {
+export default forwardRef(function CoinsList(
+  { simpleItem, contentContainerStyle, ...props }: CoinsListProps,
+  ref
+) {
   return (
-    <FlashList
-      {...props}
-      contentContainerStyle={styles.listContent}
+    <AnimatedFlashList
+      contentContainerStyle={[styles.listContent, contentContainerStyle]}
       onEndReachedThreshold={0.3}
       renderItem={({ item }) => <CoinItem simple={simpleItem} coin={item} />}
       ItemSeparatorComponent={() => <View style={styles.coinItemSeparator} />}
       keyExtractor={({ id }, index) => `${index}-${id}`}
       ListFooterComponentStyle={styles.listFooter}
-      estimatedItemSize={simpleItem ? 60 : 70}
+      ref={ref}
+      // estimatedItemSize={simpleItem ? 60 : 70}
+      {...props}
     />
   );
-}
+});
