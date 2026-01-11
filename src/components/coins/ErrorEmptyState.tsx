@@ -1,4 +1,4 @@
-import EmptyState from "./EmptyState";
+import { EmptyState } from "@/components";
 
 export default function ErrorEmptyState() {
   return (

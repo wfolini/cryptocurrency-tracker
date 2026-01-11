@@ -1,10 +1,10 @@
 import type {
   CompositeScreenProps,
-  NavigatorScreenParams,
+  NavigatorScreenParams
 } from "@react-navigation/native";
 import type {
   NativeStackNavigationProp,
-  NativeStackScreenProps,
+  NativeStackScreenProps
 } from "@react-navigation/native-stack";
 import type { MaterialBottomTabScreenProps } from "react-native-paper/react-navigation";
 
