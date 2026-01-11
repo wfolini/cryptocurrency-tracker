@@ -17,7 +17,7 @@ import { CoinStatistic } from "./components/CoinStatistic";
 import { useCoinStatisticData } from "./hooks/useCoinStatisticData";
 
 export default function CoinDetailScreen({
-  route,
+  route
 }: RootStackScreenProps<"CoinDetail">) {
   const { coinId, coinName } = route.params;
 
@@ -68,7 +68,6 @@ export default function CoinDetailScreen({
             ItemSeparatorComponent={() => (
               <View style={styles.statisticSeparator} />
             )}
-            estimatedItemSize={20}
             scrollEnabled={false}
           />
         </View>

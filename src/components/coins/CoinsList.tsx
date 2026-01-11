@@ -1,6 +1,5 @@
-import { FlashList, type FlashListProps } from "@shopify/flash-list";
-import { forwardRef } from "react";
-import { View, FlatList, FlatListProps } from "react-native";
+import { forwardRef, type ForwardedRef } from "react";
+import { View, FlatList, type FlatListProps } from "react-native";
 import Animated from "react-native-reanimated";
 
 import type { CoinMarket } from "@/types/coins";
@@ -17,7 +16,7 @@ type CoinsListProps = Omit<FlatListProps<CoinMarket>, "renderItem"> & {
 
 export default forwardRef(function CoinsList(
   { simpleItem, contentContainerStyle, ...props }: CoinsListProps,
-  ref
+  ref: ForwardedRef<FlatList<CoinMarket>>
 ) {
   return (
     <AnimatedFlashList

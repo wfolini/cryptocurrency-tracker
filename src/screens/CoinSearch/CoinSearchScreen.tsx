@@ -78,7 +78,9 @@ export default function CoinSearchScreen() {
         ListHeaderComponentStyle={styles.listHeader}
         data={coins}
         onEndReached={
-          !isFetching && hasNextPage && coins?.length ? fetchNextPage : null
+          !isFetching && hasNextPage && coins?.length
+            ? () => fetchNextPage()
+            : null
         }
         ListFooterComponent={isFetchingNextPage ? ActivityIndicator : null}
         ListEmptyComponent={
