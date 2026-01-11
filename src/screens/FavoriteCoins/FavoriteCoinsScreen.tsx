@@ -5,7 +5,7 @@ import {
   ActivityIndicator,
   EmptyState,
   ErrorEmptyState,
-  Text,
+  Text
 } from "@/components";
 import { CoinsList } from "@/components/coins";
 import { useCoinsList } from "@/hooks/coins/useCoinsList";
@@ -13,10 +13,11 @@ import { useFavoriteCoinsStore } from "@/hooks/coins/useFavoriteCoinsStore";
 
 import {
   useAnimatedScrollHandler,
-  useSharedValue,
+  useSharedValue
 } from "react-native-reanimated";
 import { styles } from "./FavoriteCoinsScreen.styles";
 import Header, { MAX_HEIGHT, MIN_HEIGHT, THRESHOLD } from "./components/Header";
+import { CoinMarket } from "@/types/coins";
 
 export default function FavoriteCoinsScreen() {
   const { getFavoriteCoinsStringQuery } = useFavoriteCoinsStore();
@@ -27,19 +28,18 @@ export default function FavoriteCoinsScreen() {
     isFetching,
     isFetchingNextPage,
     refetch,
-    isError,
+    isError
   } = useCoinsList({ coinIds: getFavoriteCoinsStringQuery() });
   const emptyFavCoinsList = !getFavoriteCoinsStringQuery();
 
   const offsetY = useSharedValue(0);
 
-  const scrollViewRef = useRef<FlatList>();
+  const scrollViewRef = useRef<FlatList<CoinMarket>>(null);
 
   const scrollHandler = useAnimatedScrollHandler(
     {
       onScroll: (event) => {
         offsetY.value = event.contentOffset.y;
-        console.log(offsetY.value);
       },
       onEndDrag: (event) => {
         if (offsetY.value < THRESHOLD && offsetY.value > -MAX_HEIGHT) {
@@ -50,7 +50,7 @@ export default function FavoriteCoinsScreen() {
           // offsetY.value = withTiming(MAX_HEIGHT);
           // scrollViewRef?.current?.scrollToEnd();
         }
-      },
+      }
     },
     []
   );
@@ -80,7 +80,7 @@ export default function FavoriteCoinsScreen() {
         ListFooterComponent={isFetchingNextPage ? ActivityIndicator : null}
         onEndReached={
           !emptyFavCoinsList && !isFetching && hasNextPage
-            ? fetchNextPage
+            ? () => fetchNextPage()
             : null
         }
         refreshControl={

@@ -8,6 +8,7 @@ import { useFavoriteCoinsStore } from "@/hooks/coins/useFavoriteCoinsStore";
 import type { Currency } from "@/types/coins";
 
 import { styles } from "./CoinActionButtons.styles";
+import { useNavigation } from "@react-navigation/native";
 
 type CoinActionButtonsProps = {
   coinId: string;
@@ -20,10 +21,11 @@ export default function CoinActionButtons({
   selectedCurrency,
   onCurrencyChange,
   style,
-  coinId,
+  coinId
 }: CoinActionButtonsProps) {
   const theme = useTheme<Theme>();
   const { isCoinFavorite, toggleFavoriteCoin } = useFavoriteCoinsStore();
+  const navigation = useNavigation();
 
   const [visible, setVisible] = useState(false);
 
@@ -39,8 +41,8 @@ export default function CoinActionButtons({
       <Button
         icon={isCoinFavorite(coinId) ? "heart" : "heart-outline"}
         mode="contained-tonal"
-        onPress={() => toggleFavoriteCoin(coinId)}
         compact
+        onPress={() => toggleFavoriteCoin(coinId)}
         labelStyle={styles.labelStyle}
         textColor={
           isCoinFavorite(coinId) ? theme.colors.favorite : theme.colors.primary
