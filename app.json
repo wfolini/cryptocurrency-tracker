@@ -1,43 +1,53 @@
 {
-  "expo": {
-    "name": "CoinTrack",
-    "slug": "cointrack",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "githubUrl": "https://github.com/wfolini/cryptocurrency-tracker",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.wfolini.cointrack"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.wfolini.cointrack"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-font",
-      "expo-build-properties"
-    ],
-    "owner": "wfolini",
-    "extra": {
-      "eas": {
-        "projectId": "c626ec3e-4944-484f-95b1-43c1b5b4d581"
-      }
-    }
-  }
+	"expo": {
+		"name": "CoinTrack",
+		"slug": "cointrack",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "light",
+		"githubUrl": "https://github.com/wfolini/cryptocurrency-tracker",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.wfolini.cointrack",
+			"newArchEnabled": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.wfolini.cointrack",
+			"newArchEnabled": true
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"plugins": [
+			"expo-font",
+			[
+				"expo-build-properties",
+				{
+					"ios": {
+						"newArchEnabled": true
+					},
+					"android": {
+						"newArchEnabled": true
+					}
+				}
+			]
+		],
+		"owner": "wfolini",
+		"extra": {
+			"eas": {
+				"projectId": "c626ec3e-4944-484f-95b1-43c1b5b4d581"
+			}
+		}
+	}
 }
