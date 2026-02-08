@@ -1,5 +1,4 @@
 import { DefaultTheme as reactNavigationDefaultTheme } from "@react-navigation/native";
-import { type StyleProp, type TextStyle } from "react-native";
 import { MD2LightTheme } from "react-native-paper";
 
 import colors from "@/constants/colors";
@@ -14,19 +13,19 @@ const paperFontFamilyStyles = {
 		fontWeight: "500",
 	},
 	light: {
-		fontFamily: "Poppins_300Light",
+		fontFamily: "Poppins_400Regular",
 		fontWeight: "300",
 	},
 	thin: {
-		fontFamily: "Poppins_100Thin",
+		fontFamily: "Poppins_400Regular",
 		fontWeight: "100",
 	},
 	bold: {
-		fontFamily: "Poppins_700Bold",
+		fontFamily: "Poppins_600SemiBold",
 		fontWeight: "700",
 	},
 	heavy: {
-		fontFamily: "Poppins_900Black",
+		fontFamily: "Poppins_600SemiBold",
 		fontWeight: "900",
 	},
 } as const;
