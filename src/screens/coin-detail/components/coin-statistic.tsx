@@ -7,12 +7,12 @@ import type { CoinStatisticData } from "../hooks/use-coin-statistic-data";
 import { styles } from "./coin-statistic.styles";
 
 export function CoinStatistic({
-	item: { label, value },
+  item: { label, value },
 }: ListRenderItemInfo<CoinStatisticData>) {
-	return (
-		<View style={styles.container}>
-			<Text>{label}</Text>
-			<Text variant="label">{value}</Text>
-		</View>
-	);
+  return (
+    <View style={styles.container}>
+      <Text>{label}</Text>
+      <Text variant="label">{value}</Text>
+    </View>
+  );
 }

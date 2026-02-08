@@ -3,7 +3,7 @@ import { ActivityIndicator as NativeActivityIndicator } from "react-native";
 import { useTheme } from "react-native-paper";
 
 export default function ActivityIndicator() {
-	const theme = useTheme<Theme>();
+  const theme = useTheme<Theme>();
 
-	return <NativeActivityIndicator color={theme.colors.primary} />;
+  return <NativeActivityIndicator color={theme.colors.primary} />;
 }

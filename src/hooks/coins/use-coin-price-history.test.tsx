@@ -5,20 +5,20 @@ import { createWrapper } from "@/test/utils";
 import { useCoinPriceHistory } from "./use-coin-price-history";
 
 describe("useCoinPriceHistory hook", () => {
-	test("returns bitcoin price history in usd in GraphPoint format", async () => {
-		const { result } = renderHook(
-			() =>
-				useCoinPriceHistory({
-					id: "bitcoin",
-					currency: "usd",
-				}),
-			{ wrapper: createWrapper() },
-		);
+  test("returns bitcoin price history in usd in GraphPoint format", async () => {
+    const { result } = renderHook(
+      () =>
+        useCoinPriceHistory({
+          id: "bitcoin",
+          currency: "usd",
+        }),
+      { wrapper: createWrapper() },
+    );
 
-		await waitFor(() => expect(result.current.isSuccess).toBe(true));
-		expect(result.current.coinPriceHistory).toStrictEqual([
-			{ value: 71246, date: new Date(1711929600000) },
-			{ value: 59614, date: new Date(1714509600000) },
-		]);
-	});
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.coinPriceHistory).toStrictEqual([
+      { value: 71246, date: new Date(1711929600000) },
+      { value: 59614, date: new Date(1714509600000) },
+    ]);
+  });
 });

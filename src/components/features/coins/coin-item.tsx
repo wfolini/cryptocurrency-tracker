@@ -19,8 +19,8 @@ export default function CoinItem({ coin, simple }: CoinItemProps) {
     pathname: "/coin-detail/[coinId]" as const,
     params: {
       coinId: coin.id,
-      coinName: coin.name
-    }
+      coinName: coin.name,
+    },
   };
 
   return (

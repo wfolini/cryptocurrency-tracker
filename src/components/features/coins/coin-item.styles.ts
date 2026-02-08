@@ -8,21 +8,21 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    gap: 15
+    gap: 15,
   },
   simple: {
-    height: 60
+    height: 60,
   },
   leftContent: {
     flex: 1,
-    gap: 2
+    gap: 2,
   },
   rightContent: {
     marginLeft: "auto",
     alignItems: "flex-end",
-    gap: 2
+    gap: 2,
   },
   rightContentText: {
-    textAlign: "right"
-  }
+    textAlign: "right",
+  },
 });

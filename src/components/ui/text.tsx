@@ -7,19 +7,19 @@ import { withAnimated } from "./with-animated";
 const AnimatedText = withAnimated(PaperText);
 
 type TextProps = React.ComponentProps<typeof DefaultText> & {
-	style?: StyleProp<TextStyle>;
-	children: React.ReactNode;
-	variant?: FontVariant;
+  style?: StyleProp<TextStyle>;
+  children: React.ReactNode;
+  variant?: FontVariant;
 };
 
 function Text({ children, style, variant = "regular", ...props }: TextProps) {
-	const theme = useTheme<Theme>();
+  const theme = useTheme<Theme>();
 
-	return (
-		<AnimatedText style={[theme.fonts?.[variant], style]} {...props}>
-			{children}
-		</AnimatedText>
-	);
+  return (
+    <AnimatedText style={[theme.fonts?.[variant], style]} {...props}>
+      {children}
+    </AnimatedText>
+  );
 }
 
 export default Text;

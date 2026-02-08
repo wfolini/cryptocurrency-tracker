@@ -5,25 +5,25 @@ import { View } from "react-native";
 import { styles } from "./coin-image.styles";
 
 type CoinImageProps = {
-	source?: string;
+  source?: string;
 };
 
 export default function CoinImage({ source }: CoinImageProps) {
-	return source ? (
-		<Image
-			style={styles.coinImage}
-			source={source}
-			contentFit="cover"
-			transition={300}
-		/>
-	) : (
-		<View style={styles.defaultCoinContainer}>
-			<FontAwesome
-				name="usd"
-				size={24}
-				color="black"
-				style={styles.defaultCoin}
-			/>
-		</View>
-	);
+  return source ? (
+    <Image
+      style={styles.coinImage}
+      source={source}
+      contentFit="cover"
+      transition={300}
+    />
+  ) : (
+    <View style={styles.defaultCoinContainer}>
+      <FontAwesome
+        name="usd"
+        size={24}
+        color="black"
+        style={styles.defaultCoin}
+      />
+    </View>
+  );
 }
