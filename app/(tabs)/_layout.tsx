@@ -27,7 +27,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="CoinSearchScreen"
+        name="coin-search"
         options={{
           title: "Market",
           tabBarIcon: ({ color, size }) => (
