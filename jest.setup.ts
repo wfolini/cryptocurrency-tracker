@@ -1,8 +1,8 @@
 import "@testing-library/react-native/extend-expect";
 
+import "fast-text-encoding";
 // Import React Native polyfills for MSW
 import "react-native-url-polyfill/auto";
-import "fast-text-encoding";
 
 // Setup react-native-worklets mock (required by reanimated 4.x)
 jest.mock("react-native-worklets", () =>
