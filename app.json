@@ -2,19 +2,19 @@
   "expo": {
     "name": "CoinTrack",
     "slug": "cointrack",
+    "scheme": "cointrack",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "githubUrl": "https://github.com/wfolini/cryptocurrency-tracker",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.wfolini.cointrack"
@@ -29,10 +29,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-font",
-      "expo-build-properties"
-    ],
+    "plugins": ["expo-router", "expo-system-ui"],
     "owner": "wfolini",
     "extra": {
       "eas": {

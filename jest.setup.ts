@@ -1,21 +1,21 @@
 import "@testing-library/react-native/extend-expect";
 
+import "fast-text-encoding";
 // Import React Native polyfills for MSW
 import "react-native-url-polyfill/auto";
-import "fast-text-encoding";
 
 // Setup react-native-worklets mock (required by reanimated 4.x)
 jest.mock("react-native-worklets", () =>
-	require("react-native-worklets/src/mock"),
+  require("react-native-worklets/src/mock"),
 );
 
 // Setup react-native-reanimated mock using official mock
 jest.mock("react-native-reanimated", () =>
-	require("react-native-reanimated/mock"),
+  require("react-native-reanimated/mock"),
 );
 
 jest.mock("@react-native-async-storage/async-storage", () =>
-	require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
+  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
 );
 
 import mockSafeAreaContext from "react-native-safe-area-context/jest/mock";

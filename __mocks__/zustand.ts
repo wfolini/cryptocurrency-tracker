@@ -1,5 +1,5 @@
-import type * as zustand from "zustand";
 import { act } from "@testing-library/react-native";
+import type * as zustand from "zustand";
 
 const { create: actualCreate, createStore: actualCreateStore } =
   jest.requireActual<typeof zustand>("zustand");

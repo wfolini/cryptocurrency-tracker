@@ -1,6 +1,6 @@
-import { render } from "@testing-library/react-native";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { NavigationContainer } from "@react-navigation/native";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { render } from "@testing-library/react-native";
 
 const createTestQueryClient = () =>
   new QueryClient({
@@ -27,7 +27,7 @@ const Wrapper = ({
 export function renderWithWrapper(ui: React.ReactElement) {
   const testQueryClient = createTestQueryClient();
   const { rerender, ...result } = render(
-    <Wrapper client={testQueryClient}>{ui}</Wrapper>
+    <Wrapper client={testQueryClient}>{ui}</Wrapper>,
   );
   return {
     ...result,

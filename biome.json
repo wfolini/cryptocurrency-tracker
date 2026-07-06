@@ -6,7 +6,18 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "complexity": {
+        "noForEach": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
+      }
     }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2
   }
 }

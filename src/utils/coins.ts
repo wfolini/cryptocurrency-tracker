@@ -4,7 +4,7 @@ import type { Currency } from "@/types/coins";
 export function formatCurrency(
   value: number | undefined,
   currency: Currency = DEFAULT_CURRENCY,
-  minimumFractionDigits = 4
+  minimumFractionDigits = 4,
 ) {
   return value
     ? Intl.NumberFormat("en-EN", {

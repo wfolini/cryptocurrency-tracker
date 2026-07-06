@@ -49,7 +49,7 @@ export function coinDataByID(id: string) {
 export function coinHistoricalChartDataByID(
   id: string,
   currency = DEFAULT_CURRENCY,
-  days = 30
+  days = 30,
 ) {
   return api.get<CoinMarketChart>(`/coins/${id}/market_chart`, {
     params: {
