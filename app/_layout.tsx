@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 import { Stack } from "expo-router/stack";
 import { StatusBar } from "expo-status-bar";
 import { PaperProvider } from "react-native-paper";
@@ -7,7 +8,17 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppLoader } from "@/components";
 import { theme } from "@/core/theme";
 
-const queryClient = new QueryClient();
+// CoinGecko demo tier is heavily rate limited: never retry 429s and avoid refetching on every remount
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60_000,
+      retry: (failureCount, error) =>
+        failureCount < 2 &&
+        !(isAxiosError(error) && error.response?.status === 429),
+    },
+  },
+});
 
 export default function RootLayout() {
   return (

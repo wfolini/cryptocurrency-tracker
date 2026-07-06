@@ -1,4 +1,4 @@
-import { DefaultTheme as reactNavigationDefaultTheme } from "@react-navigation/native";
+import { DefaultTheme as reactNavigationDefaultTheme } from "expo-router/react-navigation";
 import { MD2LightTheme } from "react-native-paper";
 
 import colors from "@/constants/colors";

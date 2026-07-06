@@ -4,7 +4,7 @@ import type { AnimatedProps } from "react-native-reanimated";
 
 export function withAnimated<T extends object>(
   WrappedComponent: React.ComponentType<T>,
-): React.ComponentClass<AnimatedProps<T>, any> {
+): React.ComponentType<AnimatedProps<T>> {
   const displayName =
     WrappedComponent.displayName || WrappedComponent.name || "Component";
 

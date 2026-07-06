@@ -13,7 +13,7 @@ import FavoriteCoinsScreen from "./index";
 
 describe("FavoriteCoinsScreen", () => {
   test("should render with an empty list of favorites", async () => {
-    renderWithWrapper(<FavoriteCoinsScreen />);
+    await renderWithWrapper(<FavoriteCoinsScreen />);
 
     expect(await screen.getByText(/Favorites/)).toBeOnTheScreen();
     expect(
@@ -22,10 +22,10 @@ describe("FavoriteCoinsScreen", () => {
   });
 
   test("should render with a list of one favorite coin, including only bitcoin", async () => {
-    const { result } = renderHook(() => useFavoriteCoinsStore(), {
+    const { result } = await renderHook(() => useFavoriteCoinsStore(), {
       wrapper: createWrapper(),
     });
-    renderWithWrapper(<FavoriteCoinsScreen />);
+    await renderWithWrapper(<FavoriteCoinsScreen />);
 
     await act(() => {
       result.current.toggleFavoriteCoin("bitcoin");
@@ -43,10 +43,10 @@ describe("FavoriteCoinsScreen", () => {
   });
 
   test("should render with a list of one favorite coin, including bitcoin and ethereum", async () => {
-    const { result } = renderHook(() => useFavoriteCoinsStore(), {
+    const { result } = await renderHook(() => useFavoriteCoinsStore(), {
       wrapper: createWrapper(),
     });
-    renderWithWrapper(<FavoriteCoinsScreen />);
+    await renderWithWrapper(<FavoriteCoinsScreen />);
 
     await act(() => {
       result.current.toggleFavoriteCoin("bitcoin");

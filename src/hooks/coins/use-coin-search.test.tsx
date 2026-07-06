@@ -6,7 +6,7 @@ import { useCoinSearch } from "./use-coin-search";
 
 describe("useCoinSearch hook", () => {
   test("returns cryptocurrency ids matching 'bitcoin' separated by commas", async () => {
-    const { result } = renderHook(() => useCoinSearch("bitcoin"), {
+    const { result } = await renderHook(() => useCoinSearch("bitcoin"), {
       wrapper: createWrapper(),
     });
 
@@ -17,7 +17,7 @@ describe("useCoinSearch hook", () => {
   });
 
   test("returns an empty string for not matching any cryptocurrency", async () => {
-    const { result } = renderHook(() => useCoinSearch("someWeirdText"), {
+    const { result } = await renderHook(() => useCoinSearch("someWeirdText"), {
       wrapper: createWrapper(),
     });
 
@@ -26,7 +26,7 @@ describe("useCoinSearch hook", () => {
   });
 
   test("returns null when using an empty query", async () => {
-    const { result } = renderHook(() => useCoinSearch(""), {
+    const { result } = await renderHook(() => useCoinSearch(""), {
       wrapper: createWrapper(),
     });
 

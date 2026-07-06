@@ -85,7 +85,10 @@ export default function FavoriteCoinsScreen() {
         }
         refreshControl={
           !emptyFavCoinsList ? (
-            <RefreshControl refreshing={isFetching} onRefresh={refetch} />
+            <RefreshControl
+              refreshing={isFetching && !isFetchingNextPage}
+              onRefresh={refetch}
+            />
           ) : undefined
         }
         onScroll={scrollHandler}

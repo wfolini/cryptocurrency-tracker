@@ -10,7 +10,7 @@ describe("CoinSearchScreen", () => {
   });
 
   test("display all available currencies in case no search input is entered", async () => {
-    renderWithWrapper(<CoinSearchScreen />);
+    await renderWithWrapper(<CoinSearchScreen />);
 
     await waitFor(() => {
       expect(screen.getByText(/Cryptocurrencies/)).toBeOnTheScreen();
@@ -20,9 +20,9 @@ describe("CoinSearchScreen", () => {
   });
 
   test("display currencies that matches with the search input", async () => {
-    renderWithWrapper(<CoinSearchScreen />);
+    await renderWithWrapper(<CoinSearchScreen />);
 
-    fireEvent.changeText(
+    await fireEvent.changeText(
       screen.getByPlaceholderText("Search cryptocurrency"),
       "bitcoin",
     );
@@ -35,9 +35,9 @@ describe("CoinSearchScreen", () => {
   });
 
   test("display not found status when entering a search text that does not match any cryptocurrency", async () => {
-    renderWithWrapper(<CoinSearchScreen />);
+    await renderWithWrapper(<CoinSearchScreen />);
 
-    fireEvent.changeText(
+    await fireEvent.changeText(
       screen.getByPlaceholderText("Search cryptocurrency"),
       "Unknown cryptocurrency",
     );
