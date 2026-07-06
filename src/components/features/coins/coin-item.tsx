@@ -25,7 +25,7 @@ export default function CoinItem({ coin, simple }: CoinItemProps) {
 
   return (
     <Link href={href} asChild style={styles.container}>
-      <Pressable style={[simple && styles.simple]}>
+      <Pressable style={simple ? styles.simple : undefined}>
         <CoinImage source={coin.image} />
         <View style={styles.leftContent}>
           <Text variant="subheading" ellipsizeMode="tail" numberOfLines={1}>

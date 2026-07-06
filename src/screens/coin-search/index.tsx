@@ -95,7 +95,10 @@ export default function MarketScreen() {
           ) : null
         }
         refreshControl={
-          <RefreshControl refreshing={isFetching} onRefresh={refetch} />
+          <RefreshControl
+            refreshing={isFetching && !isFetchingNextPage}
+            onRefresh={refetch}
+          />
         }
         ListHeaderComponent={() => (
           <Text variant="title">

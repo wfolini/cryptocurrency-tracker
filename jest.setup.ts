@@ -1,5 +1,3 @@
-import "@testing-library/react-native/extend-expect";
-
 import "fast-text-encoding";
 // Import React Native polyfills for MSW
 import "react-native-url-polyfill/auto";

@@ -1,6 +1,6 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render } from "@testing-library/react-native";
+import { NavigationContainer } from "expo-router/react-navigation";
 
 const createTestQueryClient = () =>
   new QueryClient({
@@ -24,9 +24,9 @@ const Wrapper = ({
   </QueryClientProvider>
 );
 
-export function renderWithWrapper(ui: React.ReactElement) {
+export async function renderWithWrapper(ui: React.ReactElement) {
   const testQueryClient = createTestQueryClient();
-  const { rerender, ...result } = render(
+  const { rerender, ...result } = await render(
     <Wrapper client={testQueryClient}>{ui}</Wrapper>,
   );
   return {

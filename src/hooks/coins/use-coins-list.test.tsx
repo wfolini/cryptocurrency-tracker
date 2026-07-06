@@ -6,9 +6,12 @@ import { useCoinsList } from "./use-coins-list";
 
 describe("useCoinsList hook", () => {
   test("returns bitcoin market data with id equal to 'bitcoin'", async () => {
-    const { result } = renderHook(() => useCoinsList({ coinIds: "bitcoin" }), {
-      wrapper: createWrapper(),
-    });
+    const { result } = await renderHook(
+      () => useCoinsList({ coinIds: "bitcoin" }),
+      {
+        wrapper: createWrapper(),
+      },
+    );
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.coins?.length).toBe(1);
@@ -17,7 +20,7 @@ describe("useCoinsList hook", () => {
     );
   });
   test("returns bitcoin and ethereum market data", async () => {
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useCoinsList({ coinIds: "bitcoin,ethereum" }),
       {
         wrapper: createWrapper(),
@@ -33,7 +36,7 @@ describe("useCoinsList hook", () => {
     );
   });
   test("returns all coins if coinIds query is null", async () => {
-    const { result } = renderHook(() => useCoinsList({ coinIds: null }), {
+    const { result } = await renderHook(() => useCoinsList({ coinIds: null }), {
       wrapper: createWrapper(),
     });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
@@ -41,7 +44,7 @@ describe("useCoinsList hook", () => {
   });
 
   test("returns undefined when using an empty string as invalid query", async () => {
-    const { result } = renderHook(() => useCoinsList({ coinIds: "" }), {
+    const { result } = await renderHook(() => useCoinsList({ coinIds: "" }), {
       wrapper: createWrapper(),
     });
 

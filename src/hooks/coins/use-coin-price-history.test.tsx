@@ -6,7 +6,7 @@ import { useCoinPriceHistory } from "./use-coin-price-history";
 
 describe("useCoinPriceHistory hook", () => {
   test("returns bitcoin price history in usd in GraphPoint format", async () => {
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () =>
         useCoinPriceHistory({
           id: "bitcoin",

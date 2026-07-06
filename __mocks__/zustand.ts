@@ -44,8 +44,8 @@ export const createStore = (<T>(stateCreator: zustand.StateCreator<T>) => {
 }) as typeof zustand.createStore;
 
 // reset all stores after each test run
-afterEach(() => {
-  act(() => {
+afterEach(async () => {
+  await act(() => {
     storeResetFns.forEach((resetFn) => {
       resetFn();
     });

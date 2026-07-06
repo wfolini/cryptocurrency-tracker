@@ -18,6 +18,10 @@ type CoinsListProps = {
 
 const isTestEnv = process.env.NODE_ENV === "test";
 
+const AnimatedFlashList = Animated.createAnimatedComponent(
+  FlashList,
+) as typeof FlashList;
+
 function CoinsListInner(
   { simpleItem, data, ...props }: CoinsListProps,
   ref: ForwardedRef<FlashListRef<CoinMarket>>,
@@ -41,10 +45,6 @@ function CoinsListInner(
       />
     );
   }
-
-  const AnimatedFlashList = Animated.createAnimatedComponent(
-    FlashList,
-  ) as typeof FlashList;
 
   return (
     <AnimatedFlashList<CoinMarket>
