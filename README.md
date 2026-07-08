@@ -7,7 +7,7 @@ React Native app built with [Expo](https://github.com/expo/expo) that tracks the
 ## Tech Stack
 
 - [Bun](https://bun.sh/)
-- [Biome.js](https://biomejs.dev/linter/)
+- [Oxc](https://oxc.rs/) (oxlint + oxfmt)
 - [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview)
 - [Zustand](https://zustand-demo.pmnd.rs/)
 - [React Navigation](https://reactnavigation.org/)

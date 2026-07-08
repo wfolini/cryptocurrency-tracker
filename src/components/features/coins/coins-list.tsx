@@ -5,7 +5,7 @@ import {
   type ListRenderItem,
 } from "@shopify/flash-list";
 import { type ForwardedRef, forwardRef } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, View } from "react-native";
 import Animated from "react-native-reanimated";
 
 import CoinItem from "./coin-item";
