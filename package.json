@@ -1,6 +1,7 @@
 {
   "name": "cryptocurrency-tracker",
   "version": "1.0.0",
+  "private": true,
   "main": "node_modules/expo-router/entry.js",
   "scripts": {
     "start": "expo start",
@@ -8,6 +9,10 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "ts:check": "tsc",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "test": "jest",
     "test:watch": "jest --watch",
     "reset": "expo-router reset-cache"
@@ -48,16 +53,19 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@biomejs/biome": "1.7.1",
     "@testing-library/react-native": "^14.0.1",
     "@types/jest": "^30.0.0",
     "@types/react": "~19.2.4",
     "jest-expo": "~57.0.1",
     "msw": "^2.12.7",
+    "oxfmt": "^0.58.0",
+    "oxlint": "^1.73.0",
     "test-renderer": "^1.0.0",
     "ts-node": "^10.9.2",
     "typescript": "~6.0.3"
   },
-  "trustedDependencies": ["@biomejs/biome", "@shopify/react-native-skia"],
-  "private": true
+  "trustedDependencies": [
+    "oxlint",
+    "@shopify/react-native-skia"
+  ]
 }

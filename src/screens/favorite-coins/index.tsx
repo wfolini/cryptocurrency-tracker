@@ -41,7 +41,7 @@ export default function FavoriteCoinsScreen() {
       onScroll: (event) => {
         offsetY.value = event.contentOffset.y;
       },
-      onEndDrag: (event) => {
+      onEndDrag: (_event) => {
         if (offsetY.value < THRESHOLD && offsetY.value > -MAX_HEIGHT) {
           // offsetY.value = withTiming(0);
           // runOnJS({ animated: true, offset: 0 })(scrollViewRef?.current?.scrollToOffset)
