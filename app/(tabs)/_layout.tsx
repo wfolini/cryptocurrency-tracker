@@ -1,40 +1,21 @@
-import { Feather } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import { NativeTabs } from "expo-router/unstable-native-tabs";
 
 import { theme } from "@/core/theme";
 
 export default function TabLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.accent,
-        tabBarStyle: {
-          backgroundColor: theme.colors.background,
-          borderTopWidth: 1,
-          borderTopColor: theme.colors.onSurface,
-        },
-        headerShown: false,
-      }}
+    <NativeTabs
+      tintColor={theme.colors.primary}
+      backgroundColor={theme.colors.background}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="home" size={size || 22} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="coin-search"
-        options={{
-          title: "Market",
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="bar-chart-2" size={size || 22} color={color} />
-          ),
-        }}
-      />
-    </Tabs>
+      <NativeTabs.Trigger name="index">
+        <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
+        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="coin-search">
+        <NativeTabs.Trigger.Icon sf="chart.bar.fill" md="bar_chart" />
+        <NativeTabs.Trigger.Label>Market</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+    </NativeTabs>
   );
 }
