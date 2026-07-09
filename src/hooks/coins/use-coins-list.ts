@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 
 import { coinsListWithMarketData } from "@/api/coins";
 
@@ -27,6 +27,7 @@ export function useCoinsList({
         ? lastPage.config.params.page + 1
         : undefined,
     initialPageParam: 1,
+    placeholderData: keepPreviousData,
     select: (data) =>
       validQuery ? data?.pages.flatMap((page) => page.data) : [],
     enabled: validQuery,
