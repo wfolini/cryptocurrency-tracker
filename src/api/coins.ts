@@ -60,8 +60,9 @@ export function coinHistoricalChartDataByID(
   });
 }
 
-export function coinSearch(query: string) {
+export function coinSearch(query: string, signal?: AbortSignal) {
   return api.get<CoinSearch>("/search", {
     params: { query },
+    signal,
   });
 }
